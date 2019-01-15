@@ -11,17 +11,25 @@
 		<param-name>buildNumber</param-name>
 		<param-value>${buildNumber}</param-value>
 	</context-param>
-	<!-- not working also?? see https://stackoverflow.com/questions/6347326/web-app-version-in-tomcat-manager
-	<version>1.0.1.hardcoded</version>
-	-->
-	<servlet>
-		<servlet-name>fatherServlet</servlet-name>
-		<servlet-class>hello.world.FatherServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>fatherServlet</servlet-name>
-		<url-pattern>/father</url-pattern>
-	</servlet-mapping>
+
+    <servlet>
+        <servlet-name>jersey-serlvet</servlet-name>
+        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+        <init-param>
+            <param-name>jersey.config.server.provider.packages</param-name>
+            <param-value>com.howtodoinjava.jersey</param-value>
+        </init-param>
+        <init-param>
+            <param-name>jersey.config.server.provider.classnames</param-name>
+            <param-value>org.glassfish.jersey.filter.LoggingFilter</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+ 
+    <servlet-mapping>
+        <servlet-name>jersey-serlvet</servlet-name>
+        <url-pattern>/rest/*</url-pattern>
+    </servlet-mapping>
 
 
 	<welcome-file-list>

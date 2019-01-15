@@ -6,15 +6,25 @@
 	<artifactId>jersey-restful-client-example</artifactId>
 	<version>0.0.1</version>
 	<packaging>war</packaging>
+	<repositories>
+		<repository>
+			<id>maven2-repository.java.net</id>
+			<name>Java.net Repository for Maven</name>
+			<url>http://download.java.net/maven/2/</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
 	<properties>
-		<servlet-api-version>3.0.1</servlet-api-version>
 		<timestamp>${maven.build.timestamp}</timestamp>
 		<maven.build.timestamp.format>z.yyyy.MM.dd.HH.mm.ss</maven.build.timestamp.format>
 		<!-- Tomcat deploy TIP: if you wish - it is sill possible to redefine it 
 			over commadline: -DtheBN4tomcat=12356456 -->
 		<theBN4tomcat>${timestamp}</theBN4tomcat>
-	</properties>
 
+		<jersey2.version>2.19</jersey2.version>
+		<jaxrs.version>2.0.1</jaxrs.version>
+		<servlet-api-version>3.0.1</servlet-api-version>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -22,7 +32,42 @@
 			<version>${servlet-api-version}</version>
 			<scope>provided</scope>
 		</dependency>
+		<!-- JAX-RS -->
+		<dependency>
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>javax.ws.rs-api</artifactId>
+			<version>${jaxrs.version}</version>
+		</dependency>
+		<!-- Jersey 2.19 -->
+		<dependency>
+			<groupId>org.glassfish.jersey.containers</groupId>
+			<artifactId>jersey-container-servlet</artifactId>
+			<version>${jersey2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.core</groupId>
+			<artifactId>jersey-server</artifactId>
+			<version>${jersey2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.core</groupId>
+			<artifactId>jersey-client</artifactId>
+			<version>${jersey2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-multipart</artifactId>
+			<version>${jersey2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.jaxrs</groupId>
+			<artifactId>jackson-jaxrs-json-provider</artifactId>
+			<version>2.4.1</version>
+		</dependency>
 	</dependencies>
+
+
+
 
 	<scm>
 		<connection>scm:git:https://github.com/vipup/jersey-restful-client-examples.git</connection>
@@ -33,6 +78,13 @@
 	<build>
 
 		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>buildnumber-maven-plugin</artifactId>
