@@ -90,7 +90,7 @@
 					<url>${tomcat.deploy.url}</url>
 					<server>${tomcat.principal}</server>
 					<!-- THIS TRICK WORKS! -->
-					<path>/${project.name}}##${theBN4tomcat}</path>
+					<path>/${project.name}##${theBN4tomcat}</path>
 
 				</configuration>
 			</plugin>
