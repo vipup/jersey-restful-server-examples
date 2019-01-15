@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+	<display-name>minimal-war-example 
+		 
+		${pom.name}: ${pom.groupId}-${project.artifactId}-${pom.version}-${buildNumber}
+	</display-name>
+	<context-param>
+		<param-name>buildNumber</param-name>
+		<param-value>${buildNumber}</param-value>
+	</context-param>
+	<!-- not working also?? see https://stackoverflow.com/questions/6347326/web-app-version-in-tomcat-manager
+	<version>1.0.1.hardcoded</version>
+	-->
+	<servlet>
+		<servlet-name>fatherServlet</servlet-name>
+		<servlet-class>hello.world.FatherServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>fatherServlet</servlet-name>
+		<url-pattern>/father</url-pattern>
+	</servlet-mapping>
+
+
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>eu.blky.helloworld</groupId>
+	<artifactId>jersey-restful-client-example</artifactId>
+	<version>0.0.1</version>
+	<packaging>war</packaging>
+	<properties>
+		<servlet-api-version>3.0.1</servlet-api-version>
+		<timestamp>${maven.build.timestamp}</timestamp>
+		<maven.build.timestamp.format>z.yyyy.MM.dd.HH.mm.ss</maven.build.timestamp.format>
+		<!-- Tomcat deploy TIP: if you wish - it is sill possible to redefine it 
+			over commadline: -DtheBN4tomcat=12356456 -->
+		<theBN4tomcat>${timestamp}</theBN4tomcat>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>${servlet-api-version}</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+	<scm>
+		<connection>scm:git:https://github.com/vipup/jersey-restful-client-examples.git</connection>
+		<developerConnection>scm:git:https://github.com/vipup/jersey-restful-client-examples.git</developerConnection>
+		<url>https://github.com/vipup/jersey-restful-client-examples.git</url>
+	</scm>
+
+	<build>
+
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>buildnumber-maven-plugin</artifactId>
+				<version>1.4</version>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>create</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<doCheck>true</doCheck>
+					<doUpdate>true</doUpdate>
+					<shortRevisionLength>8</shortRevisionLength>
+					<!--make it available for jar/war classpath resource -->
+					<addOutputDirectoryToResources>true</addOutputDirectoryToResources>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.0.2</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+						</manifest>
+						<manifestEntries>
+							<Implementation-Build>${buildNumber}</Implementation-Build>
+							<Build-timestamp>${timestamp}</Build-timestamp>
+							<Deploymen-Module-Name>${project.artifactId}-${project.version}-r${buildNumber}</Deploymen-Module-Name>
+						</manifestEntries>
+					</archive>
+					<webResources>
+						<resource>
+							<filtering>true</filtering>
+							<directory>src/main/webapp</directory>
+							<includes>
+								<include>**/web.xml</include>
+							</includes>
+						</resource>
+					</webResources>
+					<warSourceDirectory>src/main/webapp</warSourceDirectory>
+					<!-- https://stackoverflow.com/questions/15355708/how-to-replace-a-value-in-web-xml-with-a-maven-property -->
+					<webXml>src/main/webapp/WEB-INF/web.xml</webXml>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>tomcat-maven-plugin</artifactId>
+				<version>1.0</version>
+				<configuration>
+					<url>${tomcat.deploy.url}</url>
+					<server>${tomcat.principal}</server>
+					<!-- THIS TRICK WORKS! -->
+					<path>/${project.name}}##${theBN4tomcat}</path>
+
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<optimize>true</optimize>
+					<debug>true</debug>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>1.3.1</version>
+				<executions>
+					<execution>
+						<id>enforce-java</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<requireJavaVersion>
+									<version>[1.8,)</version>
+								</requireJavaVersion>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
