@@ -19,8 +19,8 @@ import javax.ws.rs.core.Response;
 import com.howtodoinjava.jersey.Employee;
 import com.howtodoinjava.jersey.Employees;
  
-@Path("/xml")
-public class JerseyHelloWorldService
+@Path("/json")
+public class JerseyHelloWorldServiceJSON
 {
 	
 	@DELETE
@@ -32,8 +32,8 @@ public class JerseyHelloWorldService
 	
 	@PUT
 	@Path("/employees/{id}")
-	@Consumes(MediaType.APPLICATION_XML)
-	@Produces(MediaType.APPLICATION_XML)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response updateEmployeeById(@PathParam("id") Integer id, Employee e)
 	{
 	    Employee updatedEmployee = new Employee();
@@ -50,8 +50,8 @@ public class JerseyHelloWorldService
 
 	@POST
 	@Path("/employees")
-	@Consumes(MediaType.APPLICATION_XML)
-	@Produces(MediaType.APPLICATION_XML)
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response addEmployee( Employee e ) throws URISyntaxException
 	{
 	    if(e == null){
@@ -67,7 +67,7 @@ public class JerseyHelloWorldService
     
     @GET
     @Path("/employees/{id}")
-    @Produces(MediaType.APPLICATION_XML)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response updateEmployeeById(@PathParam("id") Integer id)
     {
         if(id  < 0){
@@ -85,7 +85,7 @@ public class JerseyHelloWorldService
     
     @GET
     @Path("/employees")
-    @Produces(MediaType.APPLICATION_XML)
+    @Produces(MediaType.APPLICATION_JSON)
     public Employees getAllEmployees()
     {
         Employees list = new Employees();
