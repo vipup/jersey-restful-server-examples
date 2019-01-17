@@ -78,7 +78,7 @@ public class JerseyHelloWorldService
         emp.setId(id);
         emp.setName("Lokesh Gupta");
          
-        GenericEntity<Employee> entity = new GenericEntity<Employee>(emp, Employee.class);
+        GenericEntity<Employee> entity = new GenericEntity<>(emp, Employee.class);
         return Response.ok().entity(entity).build();
     }
     
