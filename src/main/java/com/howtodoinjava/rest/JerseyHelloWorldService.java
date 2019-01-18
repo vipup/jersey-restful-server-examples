@@ -43,7 +43,7 @@ public class JerseyHelloWorldService
 	    if(e.getName() == null) {
 	        return Response.status(400).entity("Please provide the employee name !!").build();
 	    } 
-	    loadData(emp, e);
+	    loadData(e, emp);
 	    return Response.ok().entity(emp).build();
 	}
 	
@@ -138,9 +138,11 @@ public class JerseyHelloWorldService
 			String methodName = gettersAndSetters[i].getName();
 			try {
 				if (methodName.startsWith("get")) {
+					Object valueTmp = gettersAndSetters[i].invoke(object_from, null);
+					if (valueTmp != null )
 					object_to.getClass()
 							.getMethod(methodName.replaceFirst("get", "set"), gettersAndSetters[i].getReturnType())
-							.invoke(object_to, gettersAndSetters[i].invoke(object_from, null));
+							.invoke(object_to, valueTmp );
 				} else if (methodName.startsWith("is")) {
 					object_to.getClass()
 							.getMethod(methodName.replaceFirst("is", "set"), gettersAndSetters[i].getReturnType())

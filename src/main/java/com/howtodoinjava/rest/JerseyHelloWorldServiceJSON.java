@@ -41,9 +41,10 @@ public class JerseyHelloWorldServiceJSON {
 	    if(e.getName() == null) {
 	        return Response.status(400).entity("Please provide the employee name !!").build();
 	    } 
-	    loadData(emp, e);
+	    loadData(e, emp);
 	    return Response.ok().entity(emp).build();
 	}
+ 
 
 	@POST
 	@Path("/employees")
