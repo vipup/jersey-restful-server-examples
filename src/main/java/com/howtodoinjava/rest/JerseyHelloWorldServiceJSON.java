@@ -125,9 +125,11 @@ public class JerseyHelloWorldServiceJSON {
 			String methodName = gettersAndSetters[i].getName();
 			try {
 				if (methodName.startsWith("get")) {
+					Object valueTmp = gettersAndSetters[i].invoke(object_from, null);
+					if (valueTmp != null )
 					object_to.getClass()
 							.getMethod(methodName.replaceFirst("get", "set"), gettersAndSetters[i].getReturnType())
-							.invoke(object_to, gettersAndSetters[i].invoke(object_from, null));
+							.invoke(object_to, valueTmp );
 				} else if (methodName.startsWith("is")) {
 					object_to.getClass()
 							.getMethod(methodName.replaceFirst("is", "set"), gettersAndSetters[i].getReturnType())
@@ -155,5 +157,7 @@ public class JerseyHelloWorldServiceJSON {
 	
 		return object_to;
 	}
+
+ 
 
 }
