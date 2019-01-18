@@ -3,6 +3,7 @@ package com.howtodoinjava.rest;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -18,6 +19,7 @@ import javax.ws.rs.core.Response;
 
 import com.howtodoinjava.jersey.Employee;
 import com.howtodoinjava.jersey.Employees;
+import com.howtodoinjava.jersey.Gender;
 
 @Path("/json")
 public class JerseyHelloWorldServiceJSON {
@@ -91,6 +93,9 @@ public class JerseyHelloWorldServiceJSON {
 		list.getEmployeeList().add(new Employee(1, "Lokesh Gupta"));
 		list.getEmployeeList().add(new Employee(2, "Alex Kolenchiskey"));
 		list.getEmployeeList().add(new Employee(3, "David Kameron"));
+		Employee e = new Employee(11, "Text Name", new Date(), Math.PI, Float.MIN_VALUE , Long.MAX_VALUE, "test@java.ws", Gender.bigender, true);
+		list.getEmployeeList().add(e);
+		
 	}
 
 	private static final Employees getAll() {
