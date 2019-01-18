@@ -74,12 +74,7 @@ public class JerseyHelloWorldService
     {
         if(id  < 0){
             return Response.noContent().build();
-        }
-        Employee emp = new Employee();
-         
-        emp.setId(id);
-        emp.setName("Lokesh Gupta");
-         
+        } 
         GenericEntity<Employee> entity = new GenericEntity<>(emp, Employee.class);
         return Response.ok().entity(entity).build();
     }
@@ -94,7 +89,7 @@ public class JerseyHelloWorldService
 	
 	
 	static final Employees list = new Employees();
-	static final Employee emp = new Employee(11, "Vasja Pupkin", new Date(), Math.PI, Float.MIN_VALUE , Long.MAX_VALUE, "test@java.ws", Gender.bigender, true);
+	static final Employee emp = new Employee(11, "Rest Domin", new Date(0), Math.PI, Float.MIN_VALUE , Long.MAX_VALUE, "rest@dom.xml", Gender.bigender, true);
 
 	static {
 		list.setEmployeeList(new ArrayList<Employee>());

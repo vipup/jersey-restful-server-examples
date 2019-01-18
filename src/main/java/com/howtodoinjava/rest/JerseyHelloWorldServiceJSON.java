@@ -69,8 +69,6 @@ public class JerseyHelloWorldServiceJSON {
 		if (id < 0) {
 			return Response.noContent().build();
 		} 
-		emp.setId(id);
-		emp.setName("Lokesh Gupta");
 
 		GenericEntity<Employee> entity = new GenericEntity<>(emp, Employee.class);
 		return Response.ok().entity(entity).build();
@@ -84,7 +82,7 @@ public class JerseyHelloWorldServiceJSON {
 	}
 
 	static final Employees list = new Employees();
-	static final Employee emp = new Employee(11, "Vasja Pupkin", new Date(), Math.PI, Float.MIN_VALUE , Long.MAX_VALUE, "test@java.ws", Gender.bigender, true);
+	static final Employee emp = new Employee(11, "Jason Restoff", new Date(), Math.PI, Float.MIN_VALUE , Long.MAX_VALUE, "json@over.rest", Gender.rather_not_say , true);
 
 	static {
 		list.setEmployeeList(new ArrayList<Employee>());
