@@ -1,5 +1,7 @@
 package com.howtodoinjava.rest;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -34,17 +36,13 @@ public class JerseyHelloWorldServiceJSON {
 	@Path("/employees/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response updateEmployeeById(@PathParam("id") Integer id, Employee e) {
-		Employee updatedEmployee = new Employee();
-
-		if (e.getName() == null) {
-			return Response.status(400).entity("Please provide the employee name !!").build();
-		}
-
-		updatedEmployee.setId(id);
-		updatedEmployee.setName(e.getName());
-
-		return Response.ok().entity(updatedEmployee).build();
+	public Response updateEmployeeById(@PathParam("id") Integer id, Employee e)
+	{	      
+	    if(e.getName() == null) {
+	        return Response.status(400).entity("Please provide the employee name !!").build();
+	    } 
+	    loadData(emp, e);
+	    return Response.ok().entity(emp).build();
 	}
 
 	@POST
@@ -59,7 +57,7 @@ public class JerseyHelloWorldServiceJSON {
 		if (e.getName() == null) {
 			return Response.status(400).entity("Please provide the employee name !!").build();
 		}
-
+		
 		return Response.created(new URI("/rest/employees/" + e.getId())).build();
 	}
 
@@ -69,9 +67,7 @@ public class JerseyHelloWorldServiceJSON {
 	public Response getEmployeeById(@PathParam("id") Integer id) {
 		if (id < 0) {
 			return Response.noContent().build();
-		}
-		Employee emp = new Employee();
-
+		} 
 		emp.setId(id);
 		emp.setName("Lokesh Gupta");
 
@@ -87,14 +83,15 @@ public class JerseyHelloWorldServiceJSON {
 	}
 
 	static final Employees list = new Employees();
+	static final Employee emp = new Employee(11, "Vasja Pupkin", new Date(), Math.PI, Float.MIN_VALUE , Long.MAX_VALUE, "test@java.ws", Gender.bigender, true);
 
 	static {
 		list.setEmployeeList(new ArrayList<Employee>());
 		list.getEmployeeList().add(new Employee(1, "Lokesh Gupta"));
 		list.getEmployeeList().add(new Employee(2, "Alex Kolenchiskey"));
 		list.getEmployeeList().add(new Employee(3, "David Kameron"));
-		Employee e = new Employee(11, "Text Name", new Date(), Math.PI, Float.MIN_VALUE , Long.MAX_VALUE, "test@java.ws", Gender.bigender, true);
-		list.getEmployeeList().add(e);
+		
+		list.getEmployeeList().add(emp);
 		
 	}
 
@@ -108,6 +105,54 @@ public class JerseyHelloWorldServiceJSON {
 		String output = "Message requested : " + msg;
 		// Simply return the parameter passed as message
 		return Response.status(200).entity(output).build();
+	}
+
+	/**
+	 * copy all properies from objA to objB via accessible getters --to--> getters
+	 * 
+	 * @param object_from
+	 * @param object_to
+	 * @return
+	 * @throws Exception
+	 */
+	private static final Object loadData(Employee object_from, Employee object_to ) {
+		 
+		
+		Method[] gettersAndSetters = object_from.getClass().getMethods();
+	
+		for (int i = 0; i < gettersAndSetters.length; i++) {
+			String methodName = gettersAndSetters[i].getName();
+			try {
+				if (methodName.startsWith("get")) {
+					object_to.getClass()
+							.getMethod(methodName.replaceFirst("get", "set"), gettersAndSetters[i].getReturnType())
+							.invoke(object_to, gettersAndSetters[i].invoke(object_from, null));
+				} else if (methodName.startsWith("is")) {
+					object_to.getClass()
+							.getMethod(methodName.replaceFirst("is", "set"), gettersAndSetters[i].getReturnType())
+							.invoke(object_to, gettersAndSetters[i].invoke(object_from, null));
+				}
+	
+			} catch (NoSuchMethodException e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	
+		}
+	
+		return object_to;
 	}
 
 }
