@@ -68,7 +68,7 @@ public class JerseyHelloWorldService
     @GET
     @Path("/employees/{id}")
     @Produces(MediaType.APPLICATION_XML)
-    public Response updateEmployeeById(@PathParam("id") Integer id)
+    public Response getEmployeeById(@PathParam("id") Integer id)
     {
         if(id  < 0){
             return Response.noContent().build();
@@ -86,17 +86,23 @@ public class JerseyHelloWorldService
     @GET
     @Path("/employees")
     @Produces(MediaType.APPLICATION_XML)
-    public Employees getAllEmployees()
-    {
-        Employees list = new Employees();
-        list.setEmployeeList(new ArrayList<Employee>());
-         
-        list.getEmployeeList().add(new Employee(1, "Lokesh Gupta"));
-        list.getEmployeeList().add(new Employee(2, "Alex Kolenchiskey"));
-        list.getEmployeeList().add(new Employee(3, "David Kameron"));
-         
-        return list;
-    }
+    public Employees getAllEmployees() { 
+		return getAll();
+	}
+	
+	
+	static final Employees list = new Employees();
+
+	static {
+		list.setEmployeeList(new ArrayList<Employee>());
+		list.getEmployeeList().add(new Employee(1, "Lokesh Gupta"));
+		list.getEmployeeList().add(new Employee(2, "Alex Kolenchiskey"));
+		list.getEmployeeList().add(new Employee(3, "David Kameron"));
+	}
+	
+	private static final Employees getAll() { 
+		return list;
+	}
     
     
     @GET

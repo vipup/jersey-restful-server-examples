@@ -1,5 +1,7 @@
 package com.howtodoinjava.jersey;
  
+import java.util.Date;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -10,6 +12,15 @@ public class Employee
 {
     private Integer id;
     private String name;
+    private Date dob;
+    private Double lat;
+    private Double lon;
+    private Long phone;
+    private String email;
+    private Gender sex;
+    
+    
+    
      
     public Employee() {
          
@@ -40,4 +51,12 @@ public class Employee
     public String toString() {
         return "Employee [id=" + id + ", name=" + name + "]";
     }
+
+	public Gender getSex() {
+		return sex;
+	}
+
+	public void setSex(Gender sex) {
+		this.sex = sex;
+	}
 }
