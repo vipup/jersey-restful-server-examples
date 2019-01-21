@@ -1,5 +1,5 @@
-# minimal-war-example
-Build war with maven and with only one JSP :)
+# jersey restful server examples 
+Build war and deploy it as a REST-service onto tomcat :)
 
 Steps:
 
