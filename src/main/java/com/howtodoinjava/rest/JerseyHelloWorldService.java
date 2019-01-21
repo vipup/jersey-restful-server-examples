@@ -89,7 +89,7 @@ public class JerseyHelloWorldService
 	
 	
 	static final Employees list = new Employees();
-	static final Employee emp = new Employee(11, "Rest Domin", new Date(0), Math.PI, Float.MIN_VALUE , Long.MAX_VALUE, "rest@dom.xml", Gender.bigender, true);
+	static final Employee emp = new Employee(11, "Rest Domin", new Date(0), Math.PI, Float.MIN_VALUE , Long.MAX_VALUE, "rest@dom.xml", Gender.BIGENDER, true);
 
 	static {
 		list.setEmployeeList(new ArrayList<Employee>());

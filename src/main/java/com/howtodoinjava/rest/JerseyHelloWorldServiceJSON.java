@@ -82,7 +82,7 @@ public class JerseyHelloWorldServiceJSON {
 	}
 
 	static final Employees list = new Employees();
-	static final Employee emp = new Employee(11, "Jason Restoff", new Date(), Math.PI, Float.MIN_VALUE , Long.MAX_VALUE, "json@over.rest", Gender.rather_not_say , true);
+	static final Employee emp = new Employee(11, "Jason Restoff", new Date(), Math.PI, Float.MIN_VALUE , Long.MAX_VALUE, "json@over.rest", Gender.RATHER_NOT_SAY , true);
 
 	static {
 		list.setEmployeeList(new ArrayList<Employee>());
