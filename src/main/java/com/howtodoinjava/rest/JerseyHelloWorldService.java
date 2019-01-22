@@ -30,7 +30,8 @@ abstract class JerseyHelloWorldService {
 		list.getEmployeeList().add(new Employee(++id, MockFactory.getFirstMidLastname()));
 		list.getEmployeeList().add(new Employee(++id, MockFactory.getFirstMidLastname()));
 		list.getEmployeeList().add(new Employee(++id, MockFactory.getFirstMidLastname())); 
-		 
+		
+		for (int i=0; i<15;i++)
 		list.getEmployeeList().add(
 				new Employee(
 						++id, 
@@ -39,7 +40,7 @@ abstract class JerseyHelloWorldService {
 						Math.PI,
 						Float.MIN_VALUE, 
 						Long.MAX_VALUE, 
-						"rest@dom.xml", 
+						MockFactory.getEmail(), 
 						Gender.BIGENDER, 
 						true, 
 						MockFactory.getURL())

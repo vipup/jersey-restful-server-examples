@@ -60,11 +60,20 @@ public class MockFactory {
 	public static Date getDate() {
 		try {
 			// "2018-04-04 21:22:51"
-			return new SimpleDateFormat("YYYY-MM-DD HH:mm:ss"). parse( getRandom ("dates.txt"));
+			return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"). parse( getRandom ("dates.txt"));
 		} catch (IOException | ParseException e) {
 			LOG.error("{}",e);
 		}
 		return new Date();
+	}
+
+	public static String getEmail() {
+		try {
+			return getRandom ("emails.txt");
+		} catch (IOException e) {
+			return "error@"+e.getMessage();
+		}
+		
 	}
 
 }
