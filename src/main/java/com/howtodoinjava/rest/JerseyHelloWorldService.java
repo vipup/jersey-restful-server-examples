@@ -28,8 +28,22 @@ abstract class JerseyHelloWorldService {
 		list.setEmployeeList(new ArrayList<Employee>());
 		int id=0;
 		list.getEmployeeList().add(new Employee(++id, MockFactory.getFirstMidLastname()));
-		list.getEmployeeList().add(new Employee(++id, "Alex Kolenchiskey"));
-		list.getEmployeeList().add(new Employee(++id, "David Kameron"));
+		list.getEmployeeList().add(new Employee(++id, MockFactory.getFirstMidLastname()));
+		list.getEmployeeList().add(new Employee(++id, MockFactory.getFirstMidLastname())); 
+		 
+		list.getEmployeeList().add(
+				new Employee(
+						++id, 
+						MockFactory.getFirstMidLastname(), 
+						MockFactory.getDate(), 
+						Math.PI,
+						Float.MIN_VALUE, 
+						Long.MAX_VALUE, 
+						"rest@dom.xml", 
+						Gender.BIGENDER, 
+						true, 
+						MockFactory.getURL())
+				);
 
 		list.getEmployeeList().add(emp);
 

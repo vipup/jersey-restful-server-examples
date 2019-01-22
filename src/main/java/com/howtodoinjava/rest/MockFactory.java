@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,6 +55,16 @@ public class MockFactory {
 		}
 		return null;
 				
+	}
+
+	public static Date getDate() {
+		try {
+			// "2018-04-04 21:22:51"
+			return new SimpleDateFormat("YYYY-MM-DD HH:mm:ss"). parse( getRandom ("dates.txt"));
+		} catch (IOException | ParseException e) {
+			LOG.error("{}",e);
+		}
+		return new Date();
 	}
 
 }
