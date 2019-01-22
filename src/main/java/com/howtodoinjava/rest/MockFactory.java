@@ -1,6 +1,5 @@
 package com.howtodoinjava.rest;
-
-import java.awt.List;
+ 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,7 +19,7 @@ import com.howtodoinjava.jersey.Gender;
 public class MockFactory {
 	/** Logger */
 	private static final Logger LOG = LoggerFactory.getLogger(JerseyHelloWorldService.class);
-	private static final Gender GENDERS[] = {Gender.FEMALE, Gender.MALE, Gender.NEUTRAL, Gender.TRANS, Gender.NON, Gender.ANOTHER};
+	private static final Gender[] GENDERS = {Gender.FEMALE, Gender.MALE, Gender.NEUTRAL, Gender.TRANS, Gender.NON, Gender.ANOTHER};
 
 	private MockFactory() {
 		    throw new IllegalStateException("Utility class");
@@ -117,7 +116,7 @@ public class MockFactory {
 		try {
 			return Long.parseLong(getRandom("phones.txt"));
 		} catch (NumberFormatException | IOException e) {
-			return new Long(System.currentTimeMillis());
+			return System.currentTimeMillis();
 		} 
 	}
 
