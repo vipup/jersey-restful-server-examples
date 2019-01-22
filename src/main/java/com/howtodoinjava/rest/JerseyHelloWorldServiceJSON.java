@@ -19,12 +19,18 @@ import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.howtodoinjava.jersey.Employee;
 import com.howtodoinjava.jersey.Employees;
 import com.howtodoinjava.jersey.Gender;
 
 @Path("/json")
 public class JerseyHelloWorldServiceJSON {
+
+	/** Logger */
+	private static final Logger LOG = LoggerFactory.getLogger(JerseyHelloWorldService.class);
 
 	@DELETE
 	@Path("/employees/{id}")
@@ -123,32 +129,22 @@ public class JerseyHelloWorldServiceJSON {
 			String methodName = gettersAndSetters[i].getName();
 			try {
 				if (methodName.startsWith("get")) {
-					Object valueTmp = gettersAndSetters[i].invoke(object_from, null);
-					if (valueTmp != null )
-					object_to.getClass()
-							.getMethod(methodName.replaceFirst("get", "set"), gettersAndSetters[i].getReturnType())
-							.invoke(object_to, valueTmp );
+					Object oTmp = null;
+					Object valueTmp = gettersAndSetters[i].invoke(object_from, oTmp);
+					if (valueTmp != null ) {
+						object_to.getClass()
+								.getMethod(methodName.replaceFirst("get", "set"), gettersAndSetters[i].getReturnType())
+								.invoke(object_to, valueTmp );
+					}
 				} else if (methodName.startsWith("is")) {
+					Object oTmp = null;
 					object_to.getClass()
 							.getMethod(methodName.replaceFirst("is", "set"), gettersAndSetters[i].getReturnType())
-							.invoke(object_to, gettersAndSetters[i].invoke(object_from, null));
+							.invoke(object_to, gettersAndSetters[i].invoke(object_from, oTmp));
 				}
 	
-			} catch (NoSuchMethodException e) {
-				// TODO: handle exception
-				e.printStackTrace();
-			} catch (IllegalArgumentException e) {
-				// TODO: handle exception
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (InvocationTargetException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SecurityException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			} catch (NoSuchMethodException | IllegalArgumentException |IllegalAccessException |InvocationTargetException |SecurityException e) {
+					LOG.debug("{}",e);
 			}
 	
 		}
