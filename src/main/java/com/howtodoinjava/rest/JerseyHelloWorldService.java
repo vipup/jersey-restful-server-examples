@@ -37,11 +37,11 @@ abstract class JerseyHelloWorldService {
 						++id, 
 						MockFactory.getFirstMidLastname(), 
 						MockFactory.getDate(), 
-						Math.PI,
-						Float.MIN_VALUE, 
-						Long.MAX_VALUE, 
+						MockFactory.getLongitude(),
+						MockFactory.getLatitude(), 
+						MockFactory.getPhone(), 
 						MockFactory.getEmail(), 
-						Gender.BIGENDER, 
+						MockFactory.getGender(), 
 						true, 
 						MockFactory.getURL())
 				);

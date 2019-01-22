@@ -15,9 +15,12 @@ import java.util.Random;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.howtodoinjava.jersey.Gender;
+
 public class MockFactory {
 	/** Logger */
 	private static final Logger LOG = LoggerFactory.getLogger(JerseyHelloWorldService.class);
+	private static final Gender GENDERS[] = {Gender.FEMALE, Gender.MALE, Gender.NEUTRAL, Gender.TRANS, Gender.NON, Gender.ANOTHER};
 
 	private MockFactory() {
 		    throw new IllegalStateException("Utility class");
@@ -90,4 +93,33 @@ public class MockFactory {
 		
 	}
 
+	public static Gender getGender() {
+		 return GENDERS[r.nextInt(GENDERS.length)];
+	}
+
+	public static Float getLatitude() {
+		try {
+			return Float.parseFloat(getRandom("lattitudes.txt"));
+		} catch (NumberFormatException | IOException e) {
+			return Float.MIN_VALUE;
+		}
+	}
+
+	public static Double getLongitude() {
+		try {
+			return Double.parseDouble(getRandom("longtitudes.txt"));
+		} catch (NumberFormatException | IOException e) {
+			return Double.MAX_VALUE;
+		}
+	}
+
+	public static Long  getPhone() {
+		try {
+			return Long.parseLong(getRandom("phones.txt"));
+		} catch (NumberFormatException | IOException e) {
+			return new Long(System.currentTimeMillis());
+		} 
+	}
+
+ 
 }
