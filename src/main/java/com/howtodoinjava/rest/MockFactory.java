@@ -6,7 +6,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class MockFactory {
+	/** Logger */
+	private static final Logger LOG = LoggerFactory.getLogger(JerseyHelloWorldService.class);
+
 	private MockFactory() {
 		    throw new IllegalStateException("Utility class");
 	}
@@ -32,9 +38,20 @@ public class MockFactory {
 		retval = bin.readLine();
 		for (int i = 0; i < Math.random() * 1000; i++) {
 			retval = bin.readLine();
-		}
-
+		} 
 		return retval;
+	}
+
+	public static String getFirstMidLastname()  {
+		try {
+			return  getRandom ("first-names.txt")+" "+
+					getRandom ("middle-names.txt")+" "+
+					getRandom ("names.txt");
+		} catch (IOException e) {
+			LOG.error("{}",e);
+		}
+		return null;
+				
 	}
 
 }
