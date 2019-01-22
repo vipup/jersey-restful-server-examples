@@ -1,5 +1,6 @@
 package com.howtodoinjava.rest;
 
+import java.awt.List;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -7,7 +8,9 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,15 +37,26 @@ public class MockFactory {
 		return retval;
 	}
 
+	static Random r = new Random();
+	/** 
+	 * it should be not VERY FAST
+	 * 
+	 * @param path
+	 * @return
+	 * @throws IOException
+	 */
 	private static String getRandom(String path) throws IOException {
 		InputStream is = MockFactory.class.getClassLoader().getResourceAsStream(path);
 		BufferedReader bin = new BufferedReader(new InputStreamReader(is));
 		String retval = null;
+		ArrayList<String> lines = new ArrayList<>();
 		retval = bin.readLine();
-		for (int i = 0; i < Math.random() * 1000; i++) {
+		while (retval != null) {
+			lines .add(retval);
 			retval = bin.readLine();
 		} 
-		return retval;
+		int index = r.nextInt(lines.size());
+		return lines.get(index);
 	}
 
 	public static String getFirstMidLastname()  {
