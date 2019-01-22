@@ -1,5 +1,6 @@
 package com.howtodoinjava.jersey;
 
+import java.net.URL;
 import java.util.Date;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -18,6 +19,7 @@ public class Employee {
 	private String email;
 	private Gender sex;
 	private Boolean alive;
+	private URL lasturl;
 
 	public Employee() {
 
@@ -36,8 +38,12 @@ public class Employee {
 			this.setEmail((String) o[index++]);
 			this.setSex( (Gender) o[index++]);
 			this.setAlive((Boolean) o[index++]);
+			this.setLasturl( (URL) o[index++]);
 			
-		}catch(Throwable e) {}
+		}catch(Exception e) {
+			// DO nothing
+			e.getMessage();
+		}
 	}
 
 	public Employee(Integer id, String name) {
@@ -120,5 +126,13 @@ public class Employee {
 
 	public void setAlive(Boolean alive) {
 		this.alive = alive;
+	}
+
+	public URL getLasturl() {
+		return lasturl;
+	}
+
+	public void setLasturl(URL lasturl) {
+		this.lasturl = lasturl;
 	}
 }

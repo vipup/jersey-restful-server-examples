@@ -6,6 +6,8 @@ import java.util.Date;
 
 import org.junit.Test;
 
+import com.howtodoinjava.rest.MockFactory;
+
 public class EmployeeTest {
 
 	@Test
@@ -21,20 +23,21 @@ public class EmployeeTest {
 		assertEquals(  e.getId(), new Integer(11));
 		e = new Employee(11, "Text Name");
 		assertEquals(  e.getId(), new Integer(11));
-		assertEquals(  e.getName() , "Text Name");
+		assertEquals(  "Text Name", e.getName() );
 
 		// ...
-		e = new Employee(11, "Text Name", new Date(), Math.PI, Float.MIN_VALUE , Long.MAX_VALUE, "test@java.lang", Gender.BIGENDER, true);
+		e = new Employee(11, "Text Name", new Date(), Math.PI, Float.MIN_VALUE , Long.MAX_VALUE, "test@java.lang", Gender.BIGENDER, true,  MockFactory.getURL());
 		assertEquals(  e.getId(), new Integer(11));
-		assertEquals(  e.getName() , "Text Name");
+		assertEquals(  "Text Name", e.getName());
 		assertNotNull( e.getDob() );
 		
 		assertNotNull( e.getLat()  );
 		assertNotNull( e.getLon()  );
 		assertNotNull( e.getPhone()   );
 		assertNotNull( e.getPhone()   );
-		assertEquals(  e.getSex(),  Gender.BIGENDER );
+		assertEquals( Gender.BIGENDER, e.getSex() );
 		assertTrue( e.getAlive() );
+		assertNotNull( e.getLasturl()  );
 		
 	}
 
