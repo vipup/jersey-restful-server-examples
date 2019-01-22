@@ -42,15 +42,13 @@ public class JerseyHelloWorldServiceJSON {
 	@Path("/employees/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response updateEmployeeById(@PathParam("id") Integer id, Employee e)
-	{	      
-	    if(e.getName() == null) {
-	        return Response.status(400).entity("Please provide the employee name !!").build();
-	    } 
-	    loadData(e, emp);
-	    return Response.ok().entity(emp).build();
+	public Response updateEmployeeById(@PathParam("id") Integer id, Employee e) {
+		if (e.getName() == null) {
+			return Response.status(400).entity("Please provide the employee name !!").build();
+		}
+		loadData(e, emp);
+		return Response.ok().entity(emp).build();
 	}
- 
 
 	@POST
 	@Path("/employees")
@@ -64,7 +62,7 @@ public class JerseyHelloWorldServiceJSON {
 		if (e.getName() == null) {
 			return Response.status(400).entity("Please provide the employee name !!").build();
 		}
-		
+
 		return Response.created(new URI("/rest/employees/" + e.getId())).build();
 	}
 
@@ -74,7 +72,7 @@ public class JerseyHelloWorldServiceJSON {
 	public Response getEmployeeById(@PathParam("id") Integer id) {
 		if (id < 0) {
 			return Response.noContent().build();
-		} 
+		}
 
 		GenericEntity<Employee> entity = new GenericEntity<>(emp, Employee.class);
 		return Response.ok().entity(entity).build();
@@ -83,21 +81,21 @@ public class JerseyHelloWorldServiceJSON {
 	@GET
 	@Path("/employees")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Employees getAllEmployees() { 
-		return  getAll();  
+	public Employees getAllEmployees() {
+		return getAll();
 	}
 
 	static final Employees list = new Employees();
-	static final Employee emp = new Employee(11, "Jason Restoff", new Date(), Math.PI, Float.MIN_VALUE , Long.MAX_VALUE, "json@over.rest", Gender.RATHER_NOT_SAY , true);
-
+	static final Employee emp = new Employee(11, "Rest Domin", new Date(0), Math.PI, Float.MIN_VALUE, Long.MAX_VALUE,
+			"rest@dom.xml", Gender.BIGENDER, true, MockFactory.getURL());
 	static {
 		list.setEmployeeList(new ArrayList<Employee>());
 		list.getEmployeeList().add(new Employee(1, "Lokesh Gupta"));
 		list.getEmployeeList().add(new Employee(2, "Alex Kolenchiskey"));
 		list.getEmployeeList().add(new Employee(3, "David Kameron"));
-		
+
 		list.getEmployeeList().add(emp);
-		
+
 	}
 
 	private static final Employees getAll() {
@@ -120,21 +118,20 @@ public class JerseyHelloWorldServiceJSON {
 	 * @return
 	 * @throws Exception
 	 */
-	private static final Object loadData(Employee object_from, Employee object_to ) {
-		 
-		
+	private static final Object loadData(Employee object_from, Employee object_to) {
+
 		Method[] gettersAndSetters = object_from.getClass().getMethods();
-	
+
 		for (int i = 0; i < gettersAndSetters.length; i++) {
 			String methodName = gettersAndSetters[i].getName();
 			try {
 				if (methodName.startsWith("get")) {
 					Object oTmp = null;
 					Object valueTmp = gettersAndSetters[i].invoke(object_from, oTmp);
-					if (valueTmp != null ) {
+					if (valueTmp != null) {
 						object_to.getClass()
 								.getMethod(methodName.replaceFirst("get", "set"), gettersAndSetters[i].getReturnType())
-								.invoke(object_to, valueTmp );
+								.invoke(object_to, valueTmp);
 					}
 				} else if (methodName.startsWith("is")) {
 					Object oTmp = null;
@@ -142,16 +139,15 @@ public class JerseyHelloWorldServiceJSON {
 							.getMethod(methodName.replaceFirst("is", "set"), gettersAndSetters[i].getReturnType())
 							.invoke(object_to, gettersAndSetters[i].invoke(object_from, oTmp));
 				}
-	
-			} catch (NoSuchMethodException | IllegalArgumentException |IllegalAccessException |InvocationTargetException |SecurityException e) {
-					LOG.debug("{}",e);
+
+			} catch (NoSuchMethodException | IllegalArgumentException | IllegalAccessException
+					| InvocationTargetException | SecurityException e) {
+				LOG.debug("{}", e);
 			}
-	
+
 		}
-	
+
 		return object_to;
 	}
-
- 
 
 }
