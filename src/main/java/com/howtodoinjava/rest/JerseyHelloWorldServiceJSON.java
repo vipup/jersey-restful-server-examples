@@ -1,8 +1,7 @@
 package com.howtodoinjava.rest;
  
 import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
+import java.net.URISyntaxException; 
 import java.util.Date;
 
 import javax.ws.rs.Consumes;
@@ -20,7 +19,7 @@ import javax.ws.rs.core.Response;
 
 import com.howtodoinjava.jersey.Employee;
 import com.howtodoinjava.jersey.Employees;
-import com.howtodoinjava.jersey.Gender;
+import com.howtodoinjava.jersey.XMLEnvelope; 
 
 @Path("/json")
 public class JerseyHelloWorldServiceJSON extends JerseyHelloWorldService{
@@ -79,21 +78,44 @@ public class JerseyHelloWorldServiceJSON extends JerseyHelloWorldService{
 	public Employees getAllEmployees() {
 		return getAll();
 	}
-
-	static final Employees list = new Employees();
-	static final Employee emp = new Employee(11, "Rest Domin", new Date(0), Math.PI, Float.MIN_VALUE, Long.MAX_VALUE,
-			"rest@dom.xml", Gender.BIGENDER, true, MockFactory.getURL());
-	static {
-		list.setEmployeeList(new ArrayList<Employee>());
-		list.getEmployeeList().add(new Employee(1, "Lokesh Gupta"));
-		list.getEmployeeList().add(new Employee(2, "Alex Kolenchiskey"));
-		list.getEmployeeList().add(new Employee(3, "David Kameron"));
-
-		list.getEmployeeList().add(emp);
-
-	}
  
-
+ 
+	/**
+	 * put string PLACEHODERFORDATE into your String-Data, and it will be replaced to current Date()
+	 * 
+	 * @param xml
+	 * @return
+	 */
+	@POST
+	@Path("/date")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response upXML(XMLEnvelope xml) {
+		String newValue = xml.getXmlbody().replace("PLACEHODERFORDATE", "{\"date\":\""+new Date()+"\"}");
+		xml.setXmlbody(newValue);	 
+		return Response.status(200).entity(xml).build();
+	}
+	
+	/**
+	 * this methid just generates the XML-container-Obj
+	 * 
+	 * @return
+	 */
+	@GET
+	@Path("/date")
+	@Produces(MediaType.APPLICATION_JSON)
+ 	public Response getXML() {
+		XMLEnvelope xml = new XMLEnvelope();
+		xml.setXmlbody(""+new Date());
+		return Response.status(200).entity(xml).build();
+	}	
+ 
+	/**
+	 * this is the very simple method 
+	 * 
+	 * @param msg
+	 * @return
+	 */
 	@GET
 	@Path("/{message}")
 	public Response getMsg(@PathParam("message") String msg) {

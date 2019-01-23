@@ -1,7 +1,8 @@
 package com.howtodoinjava.rest;
  
 import java.net.URI;
-import java.net.URISyntaxException; 
+import java.net.URISyntaxException;
+import java.util.Date;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -17,7 +18,8 @@ import javax.ws.rs.core.Response;
  
 
 import com.howtodoinjava.jersey.Employee;
-import com.howtodoinjava.jersey.Employees; 
+import com.howtodoinjava.jersey.Employees;
+import com.howtodoinjava.jersey.XMLEnvelope; 
 
 @Path("/xml")
 public class JerseyHelloWorldServiceXML extends JerseyHelloWorldService{
@@ -75,7 +77,25 @@ public class JerseyHelloWorldServiceXML extends JerseyHelloWorldService{
 		return getAll();
 	}
  
-
+	@POST
+	@Path("/date")
+	@Produces(MediaType.APPLICATION_XML)
+	@Consumes(MediaType.APPLICATION_XML)
+	public Response upXML(XMLEnvelope xml) {
+		String newValue = xml.getXmlbody().replace("PLACEHODERFORDATE", "{\"date\":\""+new Date()+"\"}");
+		xml.setXmlbody(newValue);
+		return Response.status(200).entity(xml).build();
+	}
+	
+	@GET
+	@Path("/date")
+	@Produces(MediaType.APPLICATION_XML)
+	public Response getXML() {		
+		XMLEnvelope xml = new XMLEnvelope();
+		xml.setXmlbody(""+new Date());
+		return Response.status(200).entity(xml).build();
+	}
+	
 	@GET
 	@Path("/{message}")
 	public Response getMsg(@PathParam("message") String msg) {
