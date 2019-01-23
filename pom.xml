@@ -121,8 +121,9 @@
 						</goals>
 						<configuration>
 							<backend>swagger</backend>
+							<!--
 							<resourcesDir>${project.artifactId}-${project.version}/api</resourcesDir>
-							<!-- -->
+							 -->
 							<deployedDomain>localhost:8080/jersey-restful-client-example/rest</deployedDomain>
 							 
 						</configuration>
