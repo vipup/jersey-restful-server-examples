@@ -95,10 +95,9 @@ public class JerseyHelloWorldServiceJSON extends JerseyHelloWorldService{
 	@Path("/echo/{message}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response echoMsg(@PathParam("message") XMLEnvelope xml) {
-		String newValue = xml.getXmlbody().replace("PLACEHODERFORDATE", "{\"date\":\""+new Date()+"\"}");
-		xml = new XMLEnvelope();
-		xml.setXmlbody(newValue);
+	public Response echoMsg() {
+		XMLEnvelope xml = new XMLEnvelope();
+		xml.setXmlbody(""+new Date());
 		return Response.status(200).entity(xml).build();
 	}	
  
