@@ -1,8 +1,7 @@
 package com.howtodoinjava.rest;
  
 import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
+import java.net.URISyntaxException; 
 import java.util.Date;
 
 import javax.ws.rs.Consumes;
@@ -19,8 +18,7 @@ import javax.ws.rs.core.Response;
  
 
 import com.howtodoinjava.jersey.Employee;
-import com.howtodoinjava.jersey.Employees;
-import com.howtodoinjava.jersey.Gender;
+import com.howtodoinjava.jersey.Employees; 
 
 @Path("/json")
 public class JerseyHelloWorldServiceJSON extends JerseyHelloWorldService{
@@ -86,7 +84,7 @@ public class JerseyHelloWorldServiceJSON extends JerseyHelloWorldService{
 	@Path("/echo/{message}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response respMsg(@PathParam("message") String xml) {
-		String output = xml.replace("PLACEHODERFORDATE", "{\"date\":\""+new Date()+"\"}");		 
+		String output = xml.replace("PLACEHODERFORDATE", "{ \"date\":\""+new Date()+"\" }");		 
 		return Response.status(200).entity(output).build();
 	}
 	
