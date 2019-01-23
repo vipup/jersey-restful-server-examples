@@ -88,7 +88,7 @@ public class JerseyHelloWorldServiceXML extends JerseyHelloWorldService{
 	}
 	
 	@GET
-	@Path("/echo/{message}")
+	@Path("/echo/")
 	@Produces(MediaType.APPLICATION_XML)
 	public Response echoMsg() {		
 		XMLEnvelope xml = new XMLEnvelope();
