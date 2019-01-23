@@ -75,23 +75,21 @@
 
 	<build>
 		<plugins>
-<plugin>
+			<plugin>
 				<groupId>com.sebastian-daschner</groupId>
 				<artifactId>jaxrs-analyzer-maven-plugin</artifactId>
 				<version>0.17</version>
 				<executions>
 					<execution>
-						<phase>package</phase>
+						
 						<goals>
 							<goal>analyze-jaxrs</goal>
 						</goals>
 						<configuration>
 							<backend>swagger</backend>
-							<!-- dyna-API 
-							<resourcesDir>${project.artifactId}-${project.version}/api</resourcesDir>
-							 -->
+							<!-- dyna-API <resourcesDir>${project.artifactId}-${project.version}/api</resourcesDir> -->
 							<deployedDomain>localhost:8080/jersey-restful-client-example/rest</deployedDomain>
-							 
+
 						</configuration>
 					</execution>
 				</executions>
