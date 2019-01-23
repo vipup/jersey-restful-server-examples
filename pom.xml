@@ -122,7 +122,7 @@
 						<configuration>
 							<backend>swagger</backend>
 							<resourcesDir>${project.artifactId}-${project.version}</resourcesDir>
-							<deployedDomain>http://localhost:8080/jersey-restful-client-example/rest</deployedDomain>
+							<deployedDomain>localhost:8080/jersey-restful-client-example/rest</deployedDomain>
 						</configuration>
 					</execution>
 				</executions>
