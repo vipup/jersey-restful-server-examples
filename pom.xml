@@ -122,7 +122,7 @@
 						<configuration>
 							<backend>swagger</backend>
 							<resourcesDir>${project.artifactId}-${project.version}</resourcesDir>
-							
+							<deployedDomain>rest</deployedDomain>
 						</configuration>
 					</execution>
 				</executions>
