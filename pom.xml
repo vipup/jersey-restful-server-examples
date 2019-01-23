@@ -116,6 +116,7 @@
 				<version>0.17</version>
 				<executions>
 					<execution>
+						<phase>package</phase>
 						<goals>
 							<goal>analyze-jaxrs</goal>
 						</goals>
