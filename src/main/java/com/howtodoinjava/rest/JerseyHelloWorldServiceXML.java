@@ -80,7 +80,7 @@ public class JerseyHelloWorldServiceXML extends JerseyHelloWorldService{
 	@Path("/echo/{message}")
 	@Produces(MediaType.APPLICATION_XML)
 	public Response respMsg(@PathParam("message") String xml) {
-		String output = xml.replace("PLACEHODERFORDATE", "{\"date\":\""+new Date()+"\"}");		 
+		String output = xml.replace("PLACEHODERFORDATE", "<date>"+new Date()+"</date>");	 
 		return Response.status(200).entity(output).build();
 	}
 	
