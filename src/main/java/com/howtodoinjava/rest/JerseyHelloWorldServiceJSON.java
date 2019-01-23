@@ -79,21 +79,18 @@ public class JerseyHelloWorldServiceJSON extends JerseyHelloWorldService{
 	public Employees getAllEmployees() {
 		return getAll();
 	}
-
-	static final Employees list = new Employees();
-	static final Employee emp = new Employee(11, "Rest Domin", new Date(0), Math.PI, Float.MIN_VALUE, Long.MAX_VALUE,
-			"rest@dom.xml", Gender.BIGENDER, true, MockFactory.getURL());
-	static {
-		list.setEmployeeList(new ArrayList<Employee>());
-		list.getEmployeeList().add(new Employee(1, "Lokesh Gupta"));
-		list.getEmployeeList().add(new Employee(2, "Alex Kolenchiskey"));
-		list.getEmployeeList().add(new Employee(3, "David Kameron"));
-
-		list.getEmployeeList().add(emp);
-
-	}
+ 
  
 
+	@GET
+	@Path("/echo/{message}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response echoMsg(@PathParam("message") String xml) {
+		String output = xml.replace("PLACEHODERFORDATE", ""+new Date());
+		// Simply return the parameter passed as message
+		return Response.status(200).entity(output).build();
+	}
+ 
 	@GET
 	@Path("/{message}")
 	public Response getMsg(@PathParam("message") String msg) {

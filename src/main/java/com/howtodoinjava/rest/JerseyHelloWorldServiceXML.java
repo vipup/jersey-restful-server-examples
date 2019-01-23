@@ -1,7 +1,8 @@
 package com.howtodoinjava.rest;
  
 import java.net.URI;
-import java.net.URISyntaxException; 
+import java.net.URISyntaxException;
+import java.util.Date;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -76,6 +77,15 @@ public class JerseyHelloWorldServiceXML extends JerseyHelloWorldService{
 	}
  
 
+	@GET
+	@Path("/echo/{message}")
+	@Produces(MediaType.APPLICATION_XML)
+	public Response echoMsg(@PathParam("message") String xml) {
+		String output = xml.replace("PLACEHODERFORDATE", ""+new Date());
+		// Simply return the parameter passed as message
+		return Response.status(200).entity(output).build();
+	}
+	
 	@GET
 	@Path("/{message}")
 	public Response getMsg(@PathParam("message") String msg) {
