@@ -79,6 +79,7 @@ public class JerseyHelloWorldServiceXML extends JerseyHelloWorldService{
 	@POST
 	@Path("/echo/")
 	@Produces(MediaType.APPLICATION_XML)
+	@Consumes(MediaType.APPLICATION_XML)
 	public Response respMsg(String xml) {
 		String output = xml.replace("PLACEHODERFORDATE", "<date>"+new Date()+"</date>");	 
 		return Response.status(200).entity(output).build();
@@ -87,6 +88,7 @@ public class JerseyHelloWorldServiceXML extends JerseyHelloWorldService{
 	@GET
 	@Path("/echo/")
 	@Produces(MediaType.APPLICATION_XML)
+	@Consumes(MediaType.APPLICATION_XML)
 	public Response echoMsg(@PathParam("message")String xml) {
 		String output = xml.replace("PLACEHODERFORDATE", "<date>"+new Date()+"</date>");
 		return Response.status(200).entity(output).build();
