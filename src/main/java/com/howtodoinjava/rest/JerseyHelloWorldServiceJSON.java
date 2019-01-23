@@ -85,6 +85,12 @@ public class JerseyHelloWorldServiceJSON extends JerseyHelloWorldService{
 	@Path("/date")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
+	/**
+	 * put string PLACEHODERFORDATE into your String-Data, and it will be replaced to current Date()
+	 * 
+	 * @param xml
+	 * @return
+	 */
 	public Response upXML(XMLEnvelope xml) {
 		String newValue = xml.getXmlbody().replace("PLACEHODERFORDATE", "{\"date\":\""+new Date()+"\"}");
 		xml.setXmlbody(newValue);	 
@@ -94,7 +100,12 @@ public class JerseyHelloWorldServiceJSON extends JerseyHelloWorldService{
 	@GET
 	@Path("/date")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getXML() {
+	/**
+	 * this methid just generates the XML-container-Obj
+	 * 
+	 * @return
+	 */
+ 	public Response getXML() {
 		XMLEnvelope xml = new XMLEnvelope();
 		xml.setXmlbody(""+new Date());
 		return Response.status(200).entity(xml).build();
@@ -102,6 +113,12 @@ public class JerseyHelloWorldServiceJSON extends JerseyHelloWorldService{
  
 	@GET
 	@Path("/{message}")
+	/**
+	 * this is the very simple method 
+	 * 
+	 * @param msg
+	 * @return
+	 */
 	public Response getMsg(@PathParam("message") String msg) {
 		String output = "Message requested : " + msg;
 		// Simply return the parameter passed as message
