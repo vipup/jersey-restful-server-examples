@@ -82,13 +82,21 @@ public class JerseyHelloWorldServiceJSON extends JerseyHelloWorldService{
  
  
 
+	@POST
+	@Path("/echo/{message}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response respMsg(@PathParam("message") String xml) {
+		String output = xml.replace("PLACEHODERFORDATE", "{\"date\":\""+new Date()+"\"}");		 
+		return Response.status(200).entity(output).build();
+	}
+	
 	@GET
 	@Path("/echo/{message}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response echoMsg(@PathParam("message") String xml) {
-		String output = xml.replace("PLACEHODERFORDATE", "{\"date\":\""+new Date()+"\"}");		// Simply return the parameter passed as message
+		String output = xml.replace("PLACEHODERFORDATE", "{\"date\":\""+new Date()+"\"}");		 
 		return Response.status(200).entity(output).build();
-	}
+	}	
  
 	@GET
 	@Path("/{message}")
