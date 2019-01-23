@@ -99,6 +99,13 @@ public class JerseyHelloWorldServiceJSON extends JerseyHelloWorldService{
 	/**
 	 * this methid just generates the XML-container-Obj
 	 * 
+	 * <pre>
+	 * 	 {@code
+	 * Set<String> s;
+	 * System.out.println(s);
+	 * }
+	 * </pre>
+	 * 
 	 * @return
 	 */
 	@GET
