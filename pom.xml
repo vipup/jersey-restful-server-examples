@@ -93,6 +93,49 @@
 						</configuration>
 					</execution>
 				</executions>
+				        <dependencies>
+				        <!-- https://mvnrepository.com/artifact/org.apache.maven/maven-core -->
+<dependency>
+    <groupId>org.apache.maven</groupId>
+    <artifactId>maven-core</artifactId>
+    <version>3.3.9</version>
+</dependency>
+				        
+				        
+				        <!-- https://mvnrepository.com/artifact/org.apache.maven/maven-plugin-api -->
+<dependency>
+    <groupId>org.apache.maven</groupId>
+    <artifactId>maven-plugin-api</artifactId>
+    <version>3.3.9</version>
+</dependency>
+				        
+				        
+				        <!-- https://mvnrepository.com/artifact/com.sebastian-daschner/jaxrs-analyzer -->
+<dependency>
+    <groupId>com.sebastian-daschner</groupId>
+    <artifactId>jaxrs-analyzer</artifactId>
+    <version>0.16</version>
+</dependency>
+				        
+				        
+				        <!-- https://mvnrepository.com/artifact/org.eclipse.aether/aether-api -->
+<dependency>
+    <groupId>org.eclipse.aether</groupId>
+    <artifactId>aether-api</artifactId>
+    <version>1.0.2.v20150114</version>
+</dependency>
+				        
+          <dependency>
+            <groupId>org.apache.ant</groupId>
+            <artifactId>ant</artifactId>
+            <version>1.7.1</version>
+          </dependency>
+          <dependency>
+            <groupId>org.apache.ant</groupId>
+            <artifactId>ant-launcher</artifactId>
+            <version>1.7.1</version>
+          </dependency>
+         </dependencies>
 			</plugin>
 
 			<plugin>
