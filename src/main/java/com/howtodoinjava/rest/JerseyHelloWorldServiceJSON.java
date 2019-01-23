@@ -82,7 +82,7 @@ public class JerseyHelloWorldServiceJSON extends JerseyHelloWorldService{
  
 
 	@POST
-	@Path("/echo")
+	@Path("/date")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response upXML(XMLEnvelope xml) {
@@ -92,7 +92,7 @@ public class JerseyHelloWorldServiceJSON extends JerseyHelloWorldService{
 	}
 	
 	@GET
-	@Path("/echo")
+	@Path("/date")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getXML() {
 		XMLEnvelope xml = new XMLEnvelope();

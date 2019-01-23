@@ -78,7 +78,7 @@ public class JerseyHelloWorldServiceXML extends JerseyHelloWorldService{
 	}
  
 	@POST
-	@Path("/echo")
+	@Path("/date")
 	@Produces(MediaType.APPLICATION_XML)
 	@Consumes(MediaType.APPLICATION_XML)
 	public Response upXML(XMLEnvelope xml) {
@@ -88,7 +88,7 @@ public class JerseyHelloWorldServiceXML extends JerseyHelloWorldService{
 	}
 	
 	@GET
-	@Path("/echo")
+	@Path("/date")
 	@Produces(MediaType.APPLICATION_XML)
 	public Response getXML() {		
 		XMLEnvelope xml = new XMLEnvelope();
