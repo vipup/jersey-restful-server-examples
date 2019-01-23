@@ -147,6 +147,13 @@
 								<include>**/web.xml</include>
 							</includes>
 						</resource>
+						<resource>
+							<filtering>true</filtering>
+							<directory>${project.artifactId}-${project.version}/api</directory>
+							<includes>
+								<include>**/*</include>
+							</includes>
+						</resource>
 					</webResources>
 					<warSourceDirectory>src/main/webapp</warSourceDirectory>
 					<!-- https://stackoverflow.com/questions/15355708/how-to-replace-a-value-in-web-xml-with-a-maven-property -->
