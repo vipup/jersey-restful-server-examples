@@ -18,7 +18,8 @@ import javax.ws.rs.core.Response;
  
 
 import com.howtodoinjava.jersey.Employee;
-import com.howtodoinjava.jersey.Employees; 
+import com.howtodoinjava.jersey.Employees;
+import com.howtodoinjava.jersey.XMLEnvelope; 
 
 @Path("/json")
 public class JerseyHelloWorldServiceJSON extends JerseyHelloWorldService{
@@ -83,19 +84,21 @@ public class JerseyHelloWorldServiceJSON extends JerseyHelloWorldService{
 	@POST
 	@Path("/echo/")
 	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_XML)
-	public Response respMsg(String xml) {
-		String output = xml.replace("PLACEHODERFORDATE", "{ \"date\":\""+new Date()+"\" }");		 
-		return Response.status(200).entity(output).build();
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response respMsg(XMLEnvelope xml) {
+		String newValue = xml.getXmlbody().replace("PLACEHODERFORDATE", "{\"date\":\""+new Date()+"\"}");
+		xml.setXmlbody(newValue);	 
+		return Response.status(200).entity(xml).build();
 	}
 	
 	@GET
 	@Path("/echo/{message}")
 	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_XML)
-	public Response echoMsg(@PathParam("message") String xml) {
-		String output = xml.replace("PLACEHODERFORDATE", "{\"date\":\""+new Date()+"\"}");		 
-		return Response.status(200).entity(output).build();
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response echoMsg(@PathParam("message") XMLEnvelope xml) {
+		String newValue = xml.getXmlbody().replace("PLACEHODERFORDATE", "{\"date\":\""+new Date()+"\"}");
+		xml.setXmlbody(newValue);
+		return Response.status(200).entity(xml).build();
 	}	
  
 	@GET
