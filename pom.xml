@@ -121,6 +121,8 @@
 						</goals>
 						<configuration>
 							<backend>swagger</backend>
+							<resourcesDir>${project.artifactId}-${project.version}</resourcesDir>
+							
 						</configuration>
 					</execution>
 				</executions>
