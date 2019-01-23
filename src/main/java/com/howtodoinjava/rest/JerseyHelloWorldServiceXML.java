@@ -90,7 +90,6 @@ public class JerseyHelloWorldServiceXML extends JerseyHelloWorldService{
 	@GET
 	@Path("/echo/{message}")
 	@Produces(MediaType.APPLICATION_XML)
-	@Consumes(MediaType.APPLICATION_XML)
 	public Response echoMsg() {		
 		XMLEnvelope xml = new XMLEnvelope();
 		xml.setXmlbody(""+new Date());
