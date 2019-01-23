@@ -147,7 +147,7 @@
 						</resource>
 						<resource>
 							<filtering>true</filtering>
-							<directory>target/${project.artifactId}-${project.version}/api</directory>
+							<directory>target/jaxrs-analyzer</directory>
 							<includes>
 								<include>**/*</include>
 							</includes>
