@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>eu.blky.helloworld</groupId>
@@ -28,6 +27,11 @@
 	</properties>
 	<dependencies>
 
+		<dependency>
+			<groupId>org.glassfish.jersey.inject</groupId>
+			<artifactId>jersey-hk2</artifactId>
+			<version>2.27</version>
+		</dependency>
 
 		<!-- https://wiki.base22.com/display/btg/How+to+setup+SLF4J+and+LOGBack+in+a+web+app+-+fast -->
 		<!-- https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
@@ -75,13 +79,28 @@
 
 	<build>
 		<plugins>
+
+
+			<plugin>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>2.22.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 			<plugin>
 				<groupId>com.sebastian-daschner</groupId>
 				<artifactId>jaxrs-analyzer-maven-plugin</artifactId>
-				<version>0.17</version>
+				<version>0.16</version>
 				<executions>
 					<execution>
-						
+
 						<goals>
 							<goal>analyze-jaxrs</goal>
 						</goals>
@@ -93,6 +112,49 @@
 						</configuration>
 					</execution>
 				</executions>
+				<dependencies>
+					<!-- https://mvnrepository.com/artifact/org.apache.maven/maven-core -->
+					<dependency>
+						<groupId>org.apache.maven</groupId>
+						<artifactId>maven-core</artifactId>
+						<version>3.3.9</version>
+					</dependency>
+
+
+					<!-- https://mvnrepository.com/artifact/org.apache.maven/maven-plugin-api -->
+					<dependency>
+						<groupId>org.apache.maven</groupId>
+						<artifactId>maven-plugin-api</artifactId>
+						<version>3.3.9</version>
+					</dependency>
+
+
+					<!-- https://mvnrepository.com/artifact/com.sebastian-daschner/jaxrs-analyzer -->
+					<dependency>
+						<groupId>com.sebastian-daschner</groupId>
+						<artifactId>jaxrs-analyzer</artifactId>
+						<version>0.16</version>
+					</dependency>
+
+
+					<!-- https://mvnrepository.com/artifact/org.eclipse.aether/aether-api -->
+					<dependency>
+						<groupId>org.eclipse.aether</groupId>
+						<artifactId>aether-api</artifactId>
+						<version>1.0.2.v20150114</version>
+					</dependency>
+
+					<dependency>
+						<groupId>org.apache.ant</groupId>
+						<artifactId>ant</artifactId>
+						<version>1.7.1</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.ant</groupId>
+						<artifactId>ant-launcher</artifactId>
+						<version>1.7.1</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 
 			<plugin>
@@ -186,6 +248,43 @@
 			</plugin>
 
 		</plugins>
+
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											com.sebastian-daschner
+										</groupId>
+										<artifactId>
+											jaxrs-analyzer-maven-plugin
+										</artifactId>
+										<versionRange>
+											[0.16,)
+										</versionRange>
+										<goals>
+											<goal>analyze-jaxrs</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 
 </project>
