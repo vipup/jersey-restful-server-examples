@@ -214,6 +214,13 @@
 								<include>**/*</include>
 							</includes>
 						</resource>
+						<resource>
+							<filtering>true</filtering>
+							<directory>src/main/webapp</directory>
+							<includes>
+								<include>index.jsp</include>
+							</includes>
+						</resource>
 					</webResources>
 					<warSourceDirectory>src/main/webapp</warSourceDirectory>
 					<!-- https://stackoverflow.com/questions/15355708/how-to-replace-a-value-in-web-xml-with-a-maven-property -->
