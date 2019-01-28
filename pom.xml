@@ -20,9 +20,8 @@
 		<maven.build.timestamp.format>z.yyyy.MM.dd.HH.mm.ss</maven.build.timestamp.format>
 		<!-- Tomcat deploy TIP: if you wish - it is sill possible to redefine it 
 			over commadline: -DtheBN4tomcat=12356456 -->
-		<theBN4tomcat>${timestamp}</theBN4tomcat>
-
-		<jersey2.version>2.27</jersey2.version>
+		<theBN4tomcat>${timestamp}</theBN4tomcat> 
+		<jersey.version>1.19</jersey.version>
 		<jaxrs.version>2.9.8</jaxrs.version>
 		<servlet-api-version>3.0.1</servlet-api-version>
 	</properties>
@@ -58,15 +57,12 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.glassfish.jersey.core</groupId>
+
+			<groupId>com.sun.jersey</groupId>
 			<artifactId>jersey-server</artifactId>
-			<version>${jersey2.version}</version>
+			<version>${jersey.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.glassfish.jersey.inject</groupId>
-			<artifactId>jersey-hk2</artifactId>
-			<version>${jersey2.version}</version>
-		</dependency>
+
 
 	</dependencies>
 

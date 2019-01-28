@@ -19,7 +19,7 @@ abstract class JerseyHelloWorldService {
 
 	/** Logger */
 	private static final Logger LOG = LoggerFactory.getLogger(JerseyHelloWorldService.class);
-	{
+	static {
 		LOG.debug("JerseyHelloWorldService inited");
 	}
 
