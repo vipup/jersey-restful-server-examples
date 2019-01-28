@@ -14,7 +14,7 @@ public class RestServlet extends ServletContainer {
 	 */
 	private static final long serialVersionUID = 3124679840668259416L;
 	/** Logger */
-	private static final Logger LOG = LoggerFactory.getLogger(JerseyHelloWorldService.class);
+	private static final Logger LOG = LoggerFactory.getLogger(RestServlet.class);
 	
 	static {
 		LOG.debug("RestServlet inited successully.");
