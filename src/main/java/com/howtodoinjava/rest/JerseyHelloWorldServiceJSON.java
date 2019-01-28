@@ -132,7 +132,7 @@ public class JerseyHelloWorldServiceJSON extends JerseyHelloWorldService{
 	@Produces(MediaType.APPLICATION_JSON)
  	public Response getVersion() throws IOException {
 		Manifest mf = new Manifest();
-		mf.read (  this.getClass().getClassLoader().getResourceAsStream("/META-INF/MANIFEST.MF") );
+		mf.read (  context.getResourceAsStream("/META-INF/MANIFEST.MF") );
 		Attributes atts = mf.getMainAttributes();
 		String ver = atts.getValue("Implementation-Build");
 		Version versionTmp = new Version(ver);

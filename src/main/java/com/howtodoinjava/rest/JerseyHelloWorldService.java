@@ -5,6 +5,9 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.servlet.ServletContext;
+import javax.ws.rs.core.Context;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,6 +17,8 @@ import com.howtodoinjava.jersey.Gender;
 
 
 abstract class JerseyHelloWorldService {
+	
+	@Context ServletContext context;
 	
 	public JerseyHelloWorldService() {}
 
