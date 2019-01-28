@@ -183,6 +183,7 @@
 				<configuration>
 					<archive>
 						<manifest>
+							<addClasspath>true</addClasspath>
 							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
 						</manifest>
 						<manifestEntries>
@@ -219,13 +220,7 @@
 					<webXml>src/main/webapp/WEB-INF/web.xml</webXml>
 
 					<failOnMissingWebXml>false</failOnMissingWebXml>
-					<configuration>
-						<archive>
-							<manifest>
-								<addClasspath>true</addClasspath>
-							</manifest>
-						</archive>
-					</configuration>
+
 				</configuration>
 			</plugin>
 			<plugin>
