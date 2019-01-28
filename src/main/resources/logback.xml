@@ -1,7 +1,7 @@
 <!-- https://wiki.base22.com/display/btg/How+to+setup+SLF4J+and+LOGBack+in+a+web+app+-+fast -->
 <configuration scan="true" debug="false">
 	<property name="log.folder" value="./target/logs" />
-	<if condition='isDefined("catalina.base")'>
+	<if condition='isDefined("${catalina.base}")'>
 		<then>
 			<property name="log.folder" value="${catalina.base}/logs" />
 		</then>
