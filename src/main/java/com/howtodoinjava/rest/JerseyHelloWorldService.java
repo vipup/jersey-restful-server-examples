@@ -63,21 +63,23 @@ abstract class JerseyHelloWorldService {
 		Method[] gettersAndSetters = object_from.getClass().getMethods();
 
 		for (int i = 0; i < gettersAndSetters.length; i++) {
-			String methodName = gettersAndSetters[i].getName();
+			Method getMethodTmp = gettersAndSetters[i];
+			String methodName = getMethodTmp.getName();
 			try {
 				if (methodName.startsWith("get")) {
-					Object oArr = null;
-					Object valueTmp = gettersAndSetters[i].invoke(object_from, oArr);
+					Object oArr = new Object[] {};
+					Object valueTmp = getMethodTmp.invoke(object_from); // , oArr
 					if (valueTmp != null) {
-						object_to.getClass()
-								.getMethod(methodName.replaceFirst("get", "set"), gettersAndSetters[i].getReturnType())
+						Method setMethodTMP = object_to.getClass()
+								.getMethod(methodName.replaceFirst("get", "set"), getMethodTmp.getReturnType());
+						setMethodTMP
 								.invoke(object_to, valueTmp);
 					}
 				} else if (methodName.startsWith("is")) {
 					Object oArr = null;
 					object_to.getClass()
-							.getMethod(methodName.replaceFirst("is", "set"), gettersAndSetters[i].getReturnType())
-							.invoke(object_to, gettersAndSetters[i].invoke(object_from, oArr));
+							.getMethod(methodName.replaceFirst("is", "set"), getMethodTmp.getReturnType())
+							.invoke(object_to, getMethodTmp.invoke(object_from, oArr));
 				}
 
 			} catch (NoSuchMethodException | IllegalArgumentException | IllegalAccessException
