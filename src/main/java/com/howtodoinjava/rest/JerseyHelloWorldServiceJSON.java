@@ -1,8 +1,11 @@
 package com.howtodoinjava.rest;
  
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException; 
 import java.util.Date;
+import java.util.jar.Attributes;
+import java.util.jar.Manifest;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -19,6 +22,7 @@ import javax.ws.rs.core.Response;
 
 import com.howtodoinjava.jersey.Employee;
 import com.howtodoinjava.jersey.Employees;
+import com.howtodoinjava.jersey.Version;
 import com.howtodoinjava.jersey.XMLEnvelope; 
 
 @Path("/json")
@@ -115,6 +119,24 @@ public class JerseyHelloWorldServiceJSON extends JerseyHelloWorldService{
 		XMLEnvelope xml = new XMLEnvelope();
 		xml.setXmlbody(""+new Date());
 		return Response.status(200).entity(xml).build();
+	}
+	
+	
+	/**
+	 * generates API-version in JSON-form
+	 * @return version
+	 * @throws IOException 
+	 */
+	@GET
+	@Path("/version")
+	@Produces(MediaType.APPLICATION_JSON)
+ 	public Response getVersion() throws IOException {
+		Manifest mf = new Manifest();
+		mf.read (  this.getClass().getClassLoader().getResourceAsStream("/META-INF/MANIFEST.MF") );
+		Attributes atts = mf.getMainAttributes();
+		String ver = atts.getValue("Implementation-Build");
+		Version versionTmp = new Version(ver);
+		return Response.status(200).entity(versionTmp ).build();
 	}	
  
 	/**
