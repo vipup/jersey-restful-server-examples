@@ -1,23 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.4">
-  <display-name>minimal-war-example
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:web="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.4">
+	<display-name>minimal-war-example
 
-		${pom.name}: ${pom.groupId}-${project.artifactId}-${pom.version}-${buildNumber}</display-name>
-  <context-param>
-    <param-name>buildNumber</param-name>
-    <param-value>${buildNumber}</param-value>
-  </context-param>
-  <servlet>
-    <servlet-name>jersey-serlvet</servlet-name>
-    <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
-    <init-param>
-      <param-name>com.sun.jersey.config.property.packages</param-name>
-      <param-value>com.howtodoinjava.rest</param-value>
-    </init-param>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>jersey-serlvet</servlet-name>
-    <url-pattern>/rest/*</url-pattern>
-  </servlet-mapping>
+		${pom.name}:
+		${pom.groupId}-${project.artifactId}-${pom.version}-${buildNumber}
+	</display-name>
+	<context-param>
+		<param-name>buildNumber</param-name>
+		<param-value>${buildNumber}</param-value>
+	</context-param>
+	<servlet>
+		<servlet-name>jersey-serlvet</servlet-name>
+		<!-- com.sun.jersey.spi.container.servlet.ServletContainer ...com.sun.jersey.config.property.packages 
+			>>>--jersey2_>>> org.glassfish.jersey.servlet.ServletContainer ....jersey.config.server.provider.packages -->
+		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+		<init-param>
+			<param-name>jersey.config.server.provider.packages</param-name>
+			<param-value>com.howtodoinjava.rest</param-value>
+		</init-param>
+		<init-param>
+			<param-name>jersey.config.server.provider.scanning.recursive</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>jersey-serlvet</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
 </web-app>
