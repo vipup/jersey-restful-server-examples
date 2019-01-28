@@ -1,0 +1,35 @@
+<!-- https://wiki.base22.com/display/btg/How+to+setup+SLF4J+and+LOGBack+in+a+web+app+-+fast -->
+<configuration scan="true" debug="false">
+	<property name="log.folder" value="./target/logs" />
+	<if condition='isDefined("catalina.base")'>
+		<then>
+			<property name="log.folder" value="${catalina.base}/logs" />
+		</then>
+	</if>
+	<appender name="JERSEY_HELLO"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${log.folder}/jersey-restful-server-examples.log</File>
+		<append>true</append>
+		<encoder>
+			<charset>utf-8</charset>
+			<pattern>%d{HH:mm:ss.SSS} %-5level {%thread} [%logger{40}] %msg%n
+			</pattern>
+		</encoder>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>${catalina.base}/logs/archive/jersey-restful-server-examples-%d{yyyyMMdd}-%i.log.zip
+			</fileNamePattern>
+			<maxHistory>10</maxHistory>
+			<cleanHistoryOnStart>false</cleanHistoryOnStart>
+			<maxFileSize>2000MB</maxFileSize>
+		</rollingPolicy>
+	</appender>
+	<logger name="org.springframework.web.context.support"
+		level="DEBUG" />
+	<logger name="org.springframework.beans.factory.support"
+		level="DEBUG" /><!-- Reduce noise in case user runs with TRACE logging -->
+	<logger name="psiprobe.tools.ApplicationUtils" level="DEBUG" />
+	<root level="DEBUG">
+		<appender-ref ref="JERSEY_HELLO" />
+	</root>
+</configuration>
