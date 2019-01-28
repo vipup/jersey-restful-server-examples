@@ -19,6 +19,9 @@ abstract class JerseyHelloWorldService {
 
 	/** Logger */
 	private static final Logger LOG = LoggerFactory.getLogger(JerseyHelloWorldService.class);
+	{
+		LOG.debug("JerseyHelloWorldService inited");
+	}
 
 	private static final Employees list = new Employees();
 	protected static final Employee emp = new Employee(11, "Rest Domin", new Date(0), Math.PI, Float.MIN_VALUE, Long.MAX_VALUE,
