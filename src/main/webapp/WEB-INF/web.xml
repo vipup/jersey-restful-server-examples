@@ -19,7 +19,7 @@
 		...com.sun.jersey.config.property.packages 
      2 - jersey2  org.glassfish.jersey.servlet.ServletContainer ....jersey.config.server.provider.packages 
      -->
-		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+		<servlet-class>com.howtodoinjava.rest.RestServlet</servlet-class>
 		<init-param>
 			<param-name>com.sun.jersey.config.property.packages</param-name>
 			<param-value>com.howtodoinjava.rest</param-value>
