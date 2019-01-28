@@ -72,8 +72,8 @@ abstract class JerseyHelloWorldService {
 			String methodName = getMethodTmp.getName();
 			try {
 				if (methodName.startsWith("get")) {
-					Object oArr = new Object[] {};
-					Object valueTmp = getMethodTmp.invoke(object_from); // , oArr
+					 
+					Object valueTmp = getMethodTmp.invoke(object_from);  
 					if (valueTmp != null) {
 						Method setMethodTMP = object_to.getClass()
 								.getMethod(methodName.replaceFirst("get", "set"), getMethodTmp.getReturnType());

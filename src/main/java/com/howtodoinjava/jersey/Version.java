@@ -8,18 +8,20 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Version {
 
-	private String version;
+	private String value;
 
+	public Version() {}
+			
 	public Version(String ver) {
 		this.setVersion(ver);
 	}
 
 	public String getVersion() {
-		return version;
+		return value;
 	}
 
 	public void setVersion(String version) {
-		this.version = version;
+		this.value = version;
 	}
 
 }
