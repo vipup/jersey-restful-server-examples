@@ -6,6 +6,11 @@
 			<property name="log.folder" value="${catalina.base}/logs" />
 		</then>
 	</if>
+	<if condition='isDefined("catalina.home")'>
+		<then>
+			<property name="log.folder" value="${catalina.home}/logs" />
+		</then>
+	</if>
 	<appender name="JERSEY_HELLO"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<File>${log.folder}/jersey-restful-server-examples.log</File>
