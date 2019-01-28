@@ -15,8 +15,10 @@
 	</context-param>
 	<servlet>
 		<servlet-name>jersey-serlvet</servlet-name>
-		<!-- com.sun.jersey.spi.container.servlet.ServletContainer ...com.sun.jersey.config.property.packages 
-			>>>--jersey2_>>> org.glassfish.jersey.servlet.ServletContainer ....jersey.config.server.provider.packages -->
+		<!-- com.sun.jersey.spi.container.servlet.ServletContainer 
+		...com.sun.jersey.config.property.packages 
+     2 - jersey2  org.glassfish.jersey.servlet.ServletContainer ....jersey.config.server.provider.packages 
+     -->
 		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
 		<init-param>
 			<param-name>jersey.config.server.provider.packages</param-name>
