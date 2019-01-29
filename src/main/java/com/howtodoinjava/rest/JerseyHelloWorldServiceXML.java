@@ -116,14 +116,8 @@ public class JerseyHelloWorldServiceXML extends JerseyHelloWorldService{
 	@GET
 	@Path("/version")
 	@Produces(MediaType.APPLICATION_XML)
-	public Response getVersion() throws IOException {
-		Manifest mf = new Manifest();
-		mf.read (  context.getResourceAsStream("/META-INF/MANIFEST.MF") );
-		Attributes atts = mf.getMainAttributes();
-		String ver = atts.getValue("Implementation-Build");
-		Version versionTmp = new Version(ver);
+	public Response returnVersion() throws IOException {
+		Version versionTmp = getVersion();
 		return Response.status(200).entity(versionTmp ).build();
-	}
- 
-
+	} 
 }

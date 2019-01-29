@@ -1,9 +1,12 @@
 package com.howtodoinjava.rest;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.jar.Attributes;
+import java.util.jar.Manifest;
 
 import javax.servlet.ServletContext;
 import javax.ws.rs.core.Context;
@@ -14,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import com.howtodoinjava.jersey.Employee;
 import com.howtodoinjava.jersey.Employees;
 import com.howtodoinjava.jersey.Gender;
+import com.howtodoinjava.jersey.Version;
 
 
 abstract class JerseyHelloWorldService {
@@ -63,6 +67,15 @@ abstract class JerseyHelloWorldService {
 		return list;
 	}
  
+	protected Version getVersion() throws IOException {
+		Manifest mf = new Manifest();
+		mf.read (  context.getResourceAsStream("/META-INF/MANIFEST.MF") );
+		Attributes atts = mf.getMainAttributes();
+		String ver = atts.getValue("Implementation-Build");
+		Version versionTmp = new Version(ver);
+		return versionTmp;
+	}
+
 	protected static final Object mergeObjects(Employee object_from, Employee object_to) {
 
 		Method[] gettersAndSetters = object_from.getClass().getMethods();
