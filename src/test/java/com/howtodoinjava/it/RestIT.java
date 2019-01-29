@@ -1,6 +1,9 @@
 package com.howtodoinjava.it;
 
-import java.io.IOException; 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -13,6 +16,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.howtodoinjava.jersey.Version;
+import com.sun.jersey.core.spi.scanning.Scanner;
  
 /**
  * 
@@ -26,32 +30,22 @@ import com.howtodoinjava.jersey.Version;
  *
  */
 public class RestIT {
-	protected Version getVersion() throws IOException {
-		String ver = "3d03202b";
-		Version versionTmp = new Version(ver);
-		return versionTmp;
-	}
-	
+ 
 	@Test
 	public void checkVersion() throws IOException {
 		
-	    Version versionTmp = getVersion();
-		System.out.println("######################"+ versionTmp.getVersion() +"######################");
+	     
+		String url = "http://localhost:8080/jersey-restful-server-example/rest/json/version";
+	    URLConnection connection = new URL(url).openConnection();
+	    String restTmp="";
+	    try (InputStream response = connection.getInputStream();
+	      java.util.Scanner scanner = new java.util.Scanner(response)) {
+	        String responseBody = scanner.nextLine();
+	        System.out.println(responseBody);
+	        restTmp+=responseBody;
+	    }
 		
-		Client client = ClientBuilder.newClient();
-		// http://localhost:8080/jersey-restful-server-example/rest/xml/employees
-		WebTarget webTarget = client.target("http://localhost:8080/jersey-restful-server-example/rest")
-				.path("json")
-				.path("version");
-
-		Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
-		Response response = invocationBuilder.get(); 
-		System.out.println(response.getStatus());
-		System.out.println(response.getLength());
-		System.out.println(response.toString() );
-		System.out.println(response.getEntity() );
-		Version vTmp = response.readEntity(Version.class);
-		Assert.assertEquals( vTmp.getVersion()  , versionTmp.getVersion());
+		Assert.assertTrue(restTmp,   restTmp.indexOf( "\"version\":\"")>0);
 	     
 	}
 

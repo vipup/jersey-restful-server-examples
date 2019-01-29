@@ -91,7 +91,7 @@ public class JerseyHelloWorldServiceJSON extends JerseyHelloWorldService{
 	 * @return
 	 */
 	@POST
-	@Path("/date")
+	@Path("/xmldatademo")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response upXML(XMLEnvelope xml) {
@@ -101,10 +101,22 @@ public class JerseyHelloWorldServiceJSON extends JerseyHelloWorldService{
 	}
 	
 	/**
-	 * this methid just generates the XML-container-Obj
+	 * this method just generates the XML-container-Obj
 	 * 
+	 * <h1>H1</H1>
+	 * <h2>H2</H2>  
+	 * <form><input id="demo" type="text" value="demo html form input" onclick='myFunction()'/> 
+	 * <button onclick="myFunction()">SUBMIT</button></form>
+	 * <p style="color: green;">This is a paragraph.</p>
+	 * <script>
+	 * 		function myFunction() {
+	 *   document.getElementById("demo").style.color = "red";
+	 *   }
+	 * </script>
+	 * <label style="color: yellow;">This is the label</label>
 	 * <pre>
-	 * 	 {@code
+	 * 	 
+	 * {@code
 	 * Set<String> s;
 	 * System.out.println(s);
 	 * }
@@ -113,7 +125,7 @@ public class JerseyHelloWorldServiceJSON extends JerseyHelloWorldService{
 	 * @return
 	 */
 	@GET
-	@Path("/date")
+	@Path("/xmldatademo")
 	@Produces(MediaType.APPLICATION_JSON)
  	public Response getXML() {
 		XMLEnvelope xml = new XMLEnvelope();
