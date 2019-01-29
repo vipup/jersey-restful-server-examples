@@ -3,8 +3,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>eu.blky.helloworld</groupId>
-	<artifactId>jersey-restful-client-example</artifactId>
-	<version>0.0.1</version>
+	<artifactId>jersey-restful-server-example</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<repositories>
 		<repository>
@@ -288,4 +288,8 @@
 		</pluginManagement>
 	</build>
 
+	<issueManagement>
+		<url>https://github.com/vipup/jersey-restful-server-examples/issues</url>
+		<system>https://github.com</system>
+	</issueManagement>
 </project>
