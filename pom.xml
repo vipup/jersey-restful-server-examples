@@ -105,7 +105,7 @@
 						<configuration>
 							<backend>swagger</backend>
 							<!-- dyna-API <resourcesDir>${project.artifactId}-${project.version}/api</resourcesDir> -->
-							<deployedDomain>localhost:8080/jersey-restful-client-example/rest</deployedDomain>
+							<deployedDomain>localhost:8080/${project.artifactId}/rest</deployedDomain>
 
 						</configuration>
 					</execution>
