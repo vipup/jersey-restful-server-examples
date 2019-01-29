@@ -215,8 +215,8 @@
 					</execution>
 				</executions>
 				<configuration>
-					<doCheck>false</doCheck>
-					<doUpdate>false</doUpdate>
+					<doCheck>true</doCheck>
+					<doUpdate>true</doUpdate>
 					<shortRevisionLength>8</shortRevisionLength>
 					<!--make it available for jar/war classpath resource -->
 					<addOutputDirectoryToResources>true</addOutputDirectoryToResources>
