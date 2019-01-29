@@ -44,18 +44,19 @@ abstract class JerseyHelloWorldService {
 		list.getEmployeeList().add(new Employee(++id, MockFactory.getFirstMidLastname())); 
 		
 		for (int i=0; i<15;i++) {
+			Employee employee = new Employee(
+					++id, 
+					MockFactory.getFirstMidLastname(), 
+					MockFactory.getDate(), 
+					MockFactory.getLongitude(),
+					MockFactory.getLatitude(), 
+					MockFactory.getPhone(), 
+					MockFactory.getEmail(), 
+					MockFactory.getGender(), 
+					i%3==0, 
+					MockFactory.getURL());
 			list.getEmployeeList().add(
-					new Employee(
-							++id, 
-							MockFactory.getFirstMidLastname(), 
-							MockFactory.getDate(), 
-							MockFactory.getLongitude(),
-							MockFactory.getLatitude(), 
-							MockFactory.getPhone(), 
-							MockFactory.getEmail(), 
-							MockFactory.getGender(), 
-							i%3==0, 
-							MockFactory.getURL())
+					employee
 					);
 		}
 

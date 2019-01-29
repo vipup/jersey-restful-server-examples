@@ -9,6 +9,13 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
  
 @Path("/hello")
+/**
+ * 
+ * here is the new API-part
+ * 
+ * @author i1
+ *
+ */
 public class HelloResource { 
     @GET
     @Produces(MediaType.TEXT_PLAIN)

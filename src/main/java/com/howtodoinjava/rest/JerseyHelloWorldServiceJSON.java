@@ -138,6 +138,9 @@ public class JerseyHelloWorldServiceJSON extends JerseyHelloWorldService{
 	 * generates API-version in JSON-form
 	 * @return version
 	 * @throws IOException 
+	 * 
+	 * {@code https , http  }  
+	 * @response ResPon Nse
 	 */
 	@GET
 	@Path("/version")
@@ -152,6 +155,8 @@ public class JerseyHelloWorldServiceJSON extends JerseyHelloWorldService{
 	 * 
 	 * @param msg
 	 * @return
+	 * 
+	 * {@code }
 	 */
 	@GET
 	@Path("/{message}")
