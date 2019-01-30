@@ -7,7 +7,16 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.Timer;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+@XmlRootElement(name = "nsExecutor")
+@XmlAccessorType(XmlAccessType.PROPERTY)
 public class NativeNslookupExecutor {
+	static int executorCounter=0;
+	
+	private Integer id=executorCounter++;
+	
 	final Process process;
 	final BufferedReader is;
 	final BufferedReader err;
@@ -77,18 +86,17 @@ public class NativeNslookupExecutor {
 	private synchronized void unlock() {
 		this.setLocked(false);
 	}
-
-	
-	public Process getProcess() {
-		return  process; 
-	}
-
+ 
 	public boolean isLocked() {
 		return locked;
 	}
 
 	private void setLocked(boolean locked) {
 		this.locked = locked;
+	}
+
+	public int getId() {
+		return id;
 	}
 
 }
