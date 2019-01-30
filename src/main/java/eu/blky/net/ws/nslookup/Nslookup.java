@@ -31,10 +31,11 @@ public class Nslookup {
 	NativeNslookupExecutor myNs = null;
 	public Nslookup() throws IOException {
 		if (nsList.size() < 3 ) {
-			myNs = new NativeNslookupExecutor();
+			// very slow external process
+			myNs = new NativeNslookupExecutor(10001);
 			nsList.add(myNs );
 		}else {
-			myNs = nsList.get(nsList.size()%3);
+			 nsList.get(nsList.size()%3);
 		}
 	} 
 	
@@ -53,16 +54,37 @@ public class Nslookup {
 	}
 	@GET
 	@Path("/{nscommand}")
-	public Response nsGet(@PathParam("nscommand") String cmd) throws IOException, InterruptedException {
+	public Response nsGet(@PathParam("nscommand") String cmd) throws IOException, InterruptedException, NoFreeExecutorAvailableException {
 		if (cmd == null) {
 			return Response.status(400).entity("Please send data!!").build();
 		}
-		String resp = myNs.exec(cmd);
-		 
-		return Response.ok().entity(resp).build();
+		// prevent call the locked NS-lookuper
+		try {
+			if (myNs.isLocked()){
+				myNs = getNextFreeNsLookuper();
+			}
+		
+			String resp = myNs.exec(cmd);
+			return Response.ok().entity(resp).build();
+		}catch (NullPointerException e) {
+			 myNs = getNextFreeNsLookuper();
+			 if (myNs == null )throw new NoFreeExecutorAvailableException(e);
+			 else return nsGet(cmd); // repeat the call
+		}
 	}
 	
 	
+	private static NativeNslookupExecutor getNextFreeNsLookuper() {
+		NativeNslookupExecutor retval= null;
+		for (NativeNslookupExecutor next:nsList) {
+			if (!next.isLocked()) {
+				retval = next;
+				break;
+			}
+		} 
+		return retval;
+	}
+
 	@GET
 	@Path("/list")
 	public Response nsList() throws IOException { 

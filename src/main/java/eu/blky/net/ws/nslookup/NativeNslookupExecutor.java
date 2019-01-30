@@ -15,7 +15,17 @@ public class NativeNslookupExecutor {
 	final InputStreamreaderTask myReader;
 	final InputStreamreaderTask myErrorReader;
 	
-	public NativeNslookupExecutor() throws IOException{
+	long myExecTimeoutInMilliseconds = 200;
+	private boolean locked;
+	
+	public NativeNslookupExecutor(long execTimeout) throws IOException{
+		this();
+		myExecTimeoutInMilliseconds = execTimeout;
+	}
+		
+	public NativeNslookupExecutor() throws IOException{	
+		
+		
 	    ProcessBuilder pBuilder = new ProcessBuilder("/usr/bin/nslookup" );
  
 	    pBuilder.redirectErrorStream(true); 
@@ -44,21 +54,41 @@ public class NativeNslookupExecutor {
 	 * @throws IOException
 	 * @throws InterruptedException 
 	 */
-	public String exec(String cmd) throws IOException, InterruptedException {
+	public synchronized String exec(String cmd) throws IOException, InterruptedException {
+		
+		this.lock();
+		
 		os.write(cmd);
 		os.write("\n"); 
 		System.out.println(">>>>>>>"+cmd);
-		os.flush();
-		// TODO should 	I wait??!
-		Thread.sleep(1111);
-		String errStr = myErrorReader.readBufferFully(); 
+		os.flush(); 
+		Thread.sleep(myExecTimeoutInMilliseconds);
+		String errStr = myErrorReader.readBufferFully();
+		
+		this.unlock();
 		return "".equals(errStr)?myReader.readBufferFully() : errStr; 
 	}
 
 
 
+	private synchronized void lock() {
+		this.setLocked(true);
+	}
+	private synchronized void unlock() {
+		this.setLocked(false);
+	}
+
+	
 	public Process getProcess() {
 		return  process; 
+	}
+
+	public boolean isLocked() {
+		return locked;
+	}
+
+	private void setLocked(boolean locked) {
+		this.locked = locked;
 	}
 
 }

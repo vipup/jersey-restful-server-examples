@@ -21,11 +21,11 @@ public class NativeNslookupExecutorTest {
 		retval = o.exec("www.corel.com");
 		System.out.println("<<<<<"+retval); 
 		assertTrue(retval, retval.indexOf( "Address:")>0);		
-		Thread.sleep(11111);
+		Thread.sleep(11);
 		retval = o.exec("www.oracle.com");
 		System.out.println("<<<<<"+retval); 
 		assertTrue(retval, retval.indexOf( "Address:")>0);		
-		Thread.sleep(11111);		
+		Thread.sleep(1111);		
 	}
 
 }
