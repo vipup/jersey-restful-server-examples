@@ -22,7 +22,7 @@
 		<servlet-class>com.howtodoinjava.rest.RestServlet</servlet-class>
 		<init-param>
 			<param-name>com.sun.jersey.config.property.packages</param-name>
-			<param-value>sample.hello.resources;com.howtodoinjava.rest</param-value>
+			<param-value>eu.blky.net.ws.nslookup;sample.hello.resources;com.howtodoinjava.rest</param-value>
 		</init-param>
  
 		<load-on-startup>1</load-on-startup>
