@@ -42,7 +42,7 @@ public class Nslookup {
 	@Path("/")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)    
-	public Response nsPost(NsCommand cmd) throws IOException {
+	public Response nsPost(NsCommand cmd) throws IOException, InterruptedException {
 		if (cmd == null) {
 			return Response.status(400).entity("Please send data!!").build();
 		}
@@ -53,7 +53,7 @@ public class Nslookup {
 	}
 	@GET
 	@Path("/{nscommand}")
-	public Response nsGet(@PathParam("nscommand") String cmd) throws IOException {
+	public Response nsGet(@PathParam("nscommand") String cmd) throws IOException, InterruptedException {
 		if (cmd == null) {
 			return Response.status(400).entity("Please send data!!").build();
 		}
