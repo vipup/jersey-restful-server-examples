@@ -114,6 +114,37 @@
 	<build>
 		<plugins>
 
+
+			<plugin>
+				<groupId>de.mytoys.maven.plugins</groupId>
+				<artifactId>jspc-maven-plugin</artifactId>
+				<version>1.1.0</version>
+				<configuration>
+					<webAppSourceDirectory>${project.build.directory}/${project.artifactId}-${project.version}</webAppSourceDirectory>
+					<webXml>${project.build.directory}/${project.artifactId}-${project.version}/WEB-INF/web.xml</webXml>
+					<generatedClasses>${project.build.directory}/jspc</generatedClasses>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.tomcat</groupId>
+						<artifactId>tomcat-jasper</artifactId>
+						<version>8.5.4</version>
+						<exclusions>
+							<exclusion>
+								<groupId>org.eclipse.jdt.core.compiler</groupId>
+								<artifactId>ecj</artifactId>
+							</exclusion>
+						</exclusions>
+					</dependency>
+					<dependency>
+						<groupId>org.eclipse.jdt.core.compiler</groupId>
+						<artifactId>ecj</artifactId>
+						<version>4.6.1</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+
+
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.22.0</version>
@@ -152,7 +183,7 @@
 							<backend>swagger</backend>
 							<swaggerSchemes>
 								<swaggerScheme>http,https,ws,wss</swaggerScheme>
-							</swaggerSchemes>							
+							</swaggerSchemes>
 							<!-- dyna-API <resourcesDir>${project.artifactId}-${project.version}/api</resourcesDir> -->
 							<deployedDomain>localhost:8080/${project.artifactId}/rest</deployedDomain>
 							<renderSwaggerTags>true</renderSwaggerTags>
