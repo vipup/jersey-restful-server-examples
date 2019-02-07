@@ -207,6 +207,7 @@
 							<directory>src/main/webapp</directory>
 							<includes>
 								<include>**/web.xml</include>
+								<include>**/*.html</include>
 							</includes>
 						</resource>
 						<resource>
