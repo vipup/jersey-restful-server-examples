@@ -155,31 +155,7 @@
 				</executions>
 			</plugin>
 
-			<plugin>
-				<groupId>com.sebastian-daschner</groupId>
-				<artifactId>jaxrs-analyzer-maven-plugin</artifactId>
-				<version>0.17</version>
-				<executions>
-					<execution>
-
-						<goals>
-							<goal>analyze-jaxrs</goal>
-						</goals>
-						<configuration>
-							<backend>swagger</backend>
-							<swaggerSchemes>
-								<swaggerScheme>http,https,ws,wss</swaggerScheme>
-							</swaggerSchemes>
-							<!-- dyna-API <resourcesDir>${project.artifactId}-${project.version}/api</resourcesDir> -->
-							<deployedDomain>localhost:8080/${project.artifactId}/rest</deployedDomain>
-							<renderSwaggerTags>true</renderSwaggerTags>
-							<swaggerTagsPathOffset>0</swaggerTagsPathOffset>
-						</configuration>
-					</execution>
-				</executions>
-
-			</plugin>
-
+	 
 
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
