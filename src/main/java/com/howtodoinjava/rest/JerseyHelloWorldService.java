@@ -24,19 +24,7 @@ abstract class JerseyHelloWorldService {
 	
 	@Context ServletContext context;
 	
-	public JerseyHelloWorldService() {}
-
-	/** Logger */
-	private static final Logger LOG = LoggerFactory.getLogger(JerseyHelloWorldService.class);
-	static {
-		LOG.debug("JerseyHelloWorldService inited");
-	}
-
-	private static final Employees list = new Employees();
-	protected static final Employee emp = new Employee(11, "Rest Domin", new Date(0), Math.PI, Float.MIN_VALUE, Long.MAX_VALUE,
-			"rest@dom.xml", Gender.BIGENDER, true, MockFactory.getURL());
-
-	static {
+	public JerseyHelloWorldService() {
 		list.setEmployeeList(new ArrayList<Employee>());
 		int id=0;
 		list.getEmployeeList().add(new Employee(++id, MockFactory.getFirstMidLastname()));
@@ -60,7 +48,21 @@ abstract class JerseyHelloWorldService {
 					);
 		}
 
-		list.getEmployeeList().add(emp);
+		list.getEmployeeList().add(emp);		
+	}
+
+	/** Logger */
+	private static final Logger LOG = LoggerFactory.getLogger(JerseyHelloWorldService.class);
+	static {
+		LOG.debug("JerseyHelloWorldService inited");
+	}
+
+	private   final Employees list = new Employees();
+	protected   final Employee emp = new Employee(11, "Rest Domin", new Date(0), Math.PI, Float.MIN_VALUE, Long.MAX_VALUE,
+			"rest@dom.xml", Gender.BIGENDER, true, MockFactory.getURL());
+
+	static {
+		
 
 	}
 
