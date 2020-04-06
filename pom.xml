@@ -155,10 +155,9 @@
 			</plugin>
 
 			<plugin>
-				<!-- https://github.com/sdaschner/jaxrs-analyzer.git -->
 				<groupId>com.sebastian-daschner</groupId>
-				<artifactId>jaxrs-analyzer</artifactId>
-				<version>0.18-SNAPSHOT</version>
+    <artifactId>jaxrs-analyzer</artifactId>
+    <version>0.16</version>
 				<executions>
 					<execution>
 
