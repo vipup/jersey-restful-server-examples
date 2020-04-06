@@ -29,7 +29,7 @@ import com.howtodoinjava.jersey.Employees;
  */
 public class Nslookup {
 
-	final static List<NativeNslookupExecutor> nsList = new ArrayList<>();
+	final List<NativeNslookupExecutor> nsList = new ArrayList<>();
 
 	NativeNslookupExecutor myNs = null;
 
@@ -158,7 +158,7 @@ public class Nslookup {
 		}
 	}
 
-	private static NativeNslookupExecutor getNextFreeNsLookuper() {
+	private NativeNslookupExecutor getNextFreeNsLookuper() {
 		NativeNslookupExecutor retval = null;
 		for (NativeNslookupExecutor next : nsList) {
 			if (!next.isLocked()) {
