@@ -157,7 +157,7 @@
 			<plugin>
 				<groupId>com.sebastian-daschner</groupId>
     <artifactId>jaxrs-analyzer</artifactId>
-    <version>0.16</version>
+    <version>0.17</version>
 				<executions>
 					<execution>
 
