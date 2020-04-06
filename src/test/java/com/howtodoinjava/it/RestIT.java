@@ -13,6 +13,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.howtodoinjava.jersey.Version;
@@ -32,6 +33,7 @@ import com.sun.jersey.core.spi.scanning.Scanner;
 public class RestIT {
  
 	@Test
+	@Ignore
 	public void checkVersion() throws IOException {
 		
 	     
