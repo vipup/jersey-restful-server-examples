@@ -140,7 +140,6 @@ public class JerseyHelloWorldServiceJSON extends JerseyHelloWorldService{
 	 * @throws IOException 
 	 * 
 	 * {@code https , http  }  
-	 * @response Response
 	 */
 	@GET
 	@Path("/version")
